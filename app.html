@@ -3,526 +3,553 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PoloSync — App Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>PoloSync — Student Dashboard ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+
 :root {
-  --navy: #0B1120;
-  --deep: #0E1628;
-  --card: #141E30;
-  --card2: #192338;
-  --border: #1F2E46;
-  --border2: #263650;
-  --teal: #00D4AA;
-  --teal-dim: #00A884;
-  --teal-bg: rgba(0,212,170,0.08);
-  --gold: #FFB800;
-  --gold-bg: rgba(255,184,0,0.1);
-  --coral: #FF5F57;
-  --coral-bg: rgba(255,95,87,0.1);
-  --violet: #8B7CF6;
-  --violet-bg: rgba(139,124,246,0.1);
-  --text: #E8EDF5;
-  --muted: #6B7A99;
-  --softer: #8898BB;
+  /* Pastel Light Theme */
+  --bg: #FAF8FF;
+  --bg2: #F3F0FF;
+  --sidebar-bg: #FFFFFF;
+  --card: #FFFFFF;
+  --card2: #F8F6FF;
+  --border: #E4DDFF;
+  --border2: #D4CAFF;
+
+  /* Accent Pastels */
+  --mint: #3ECFAA;
+  --mint-light: #D4F5EC;
+  --mint-dim: #2BA889;
+
+  --lavender: #9B87F5;
+  --lavender-light: #EDE9FF;
+  --lavender-dim: #7B65E8;
+
+  --peach: #FF8C69;
+  --peach-light: #FFE8E0;
+  --peach-dim: #E8705A;
+
+  --butter: #F5C842;
+  --butter-light: #FFF5CC;
+  --butter-dim: #D9AE2A;
+
+  --sky: #6AB8F7;
+  --sky-light: #DDEEFF;
+  --sky-dim: #4A9ADE;
+
+  --rose: #F07BAA;
+  --rose-light: #FFE0EE;
+
+  /* Text */
+  --text: #2D2354;
+  --muted: #9A91C8;
+  --softer: #B8B0D8;
+  --text-on-accent: #FFFFFF;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(100,80,200,0.07);
+  --shadow-md: 0 4px 20px rgba(100,80,200,0.1);
+  --shadow-lg: 0 8px 32px rgba(100,80,200,0.13);
+
   --sidebar-w: 230px;
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;}
-body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;display:flex;flex-direction:column;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Quicksand',sans-serif;
+  font-weight:500;
+  display:flex;flex-direction:column;
+}
 
-/* ── TOP BAR ── */
+/* Soft background pattern */
+body::before{
+  content:'';
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(155,135,245,0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(62,207,170,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(245,200,66,0.04) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+
+/* TOP BAR */
 .topbar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;height:56px;
-  background:rgba(11,17,32,0.9);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
+  padding:0 24px;height:58px;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:2px solid var(--border);
   flex-shrink:0;z-index:50;position:relative;
+  box-shadow:var(--shadow-sm);
 }
-.topbar-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-0.03em;}
-.topbar-logo span{color:var(--teal);}
-.topbar-center{display:flex;gap:4px;}
+.topbar-logo{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.25rem;letter-spacing:-0.02em;color:var(--text);}
+.topbar-logo span{
+  background:linear-gradient(135deg,var(--lavender),var(--mint));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
 .topbar-center a{
-  text-decoration:none;color:var(--muted);font-size:0.82rem;font-weight:400;
-  padding:6px 14px;border-radius:6px;transition:all 0.15s;
+  text-decoration:none;color:var(--muted);font-size:0.82rem;font-weight:600;
+  padding:6px 14px;border-radius:20px;transition:all 0.15s;
 }
-.topbar-center a:hover{color:var(--text);background:rgba(255,255,255,0.05);}
-.topbar-center a.active{color:var(--text);background:rgba(255,255,255,0.07);}
-.topbar-right{display:flex;align-items:center;gap:14px;}
+.topbar-center a:hover{color:var(--lavender);background:var(--lavender-light);}
+.topbar-right{display:flex;align-items:center;gap:12px;}
 .notif-btn{
-  position:relative;width:34px;height:34px;border-radius:8px;
-  background:var(--card);border:1px solid var(--border);
+  position:relative;width:36px;height:36px;border-radius:12px;
+  background:var(--lavender-light);border:1.5px solid var(--border);
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:0.95rem;transition:background 0.15s;
+  cursor:pointer;font-size:1rem;transition:all 0.15s;
 }
-.notif-btn:hover{background:var(--card2);}
+.notif-btn:hover{background:var(--border);transform:scale(1.05);}
 .notif-dot{
-  position:absolute;top:6px;right:6px;
-  width:7px;height:7px;background:var(--coral);border-radius:50%;
-  border:1.5px solid var(--navy);
+  position:absolute;top:5px;right:5px;
+  width:8px;height:8px;background:var(--peach);border-radius:50%;
+  border:2px solid #fff;
+  animation:pulse 2s ease-in-out infinite;
 }
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
 .avatar-chip{
   display:flex;align-items:center;gap:8px;
-  background:var(--card);border:1px solid var(--border);
-  padding:5px 12px 5px 5px;border-radius:100px;cursor:pointer;
+  background:var(--lavender-light);border:1.5px solid var(--border);
+  padding:5px 14px 5px 5px;border-radius:100px;cursor:pointer;
+  transition:all 0.15s;
 }
-.av-img{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-dim));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:0.7rem;color:var(--navy);}
-.av-name{font-size:0.8rem;font-weight:500;}
+.avatar-chip:hover{border-color:var(--lavender);box-shadow:var(--shadow-sm);}
+.av-img{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lavender),var(--mint));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:0.72rem;color:#fff;
+}
+.av-name{font-size:0.82rem;font-weight:700;color:var(--text);}
 
-/* ── LAYOUT ── */
-.app-layout{display:flex;flex:1;overflow:hidden;}
+/* LAYOUT */
+.app-layout{display:flex;flex:1;overflow:hidden;position:relative;z-index:1;}
 
-/* ── SIDEBAR ── */
+/* SIDEBAR */
 .sidebar{
   width:var(--sidebar-w);flex-shrink:0;
-  background:var(--deep);border-right:1px solid var(--border);
+  background:var(--sidebar-bg);
+  border-right:2px solid var(--border);
   display:flex;flex-direction:column;
-  padding:16px 12px;overflow-y:auto;
+  padding:16px 10px;overflow-y:auto;
+  box-shadow:3px 0 16px rgba(100,80,200,0.06);
 }
 .sidebar-section-label{
-  font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  color:var(--muted);padding:0 8px;margin:16px 0 6px;
+  font-size:0.65rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);padding:0 10px;margin:18px 0 6px;
 }
-.sidebar-section-label:first-child{margin-top:0;}
+.sidebar-section-label:first-child{margin-top:4px;}
 .nav-item{
   display:flex;align-items:center;gap:10px;
-  padding:9px 10px;border-radius:8px;
-  cursor:pointer;transition:all 0.15s;
-  color:var(--muted);font-size:0.85rem;font-weight:400;
+  padding:9px 10px;border-radius:12px;
+  cursor:pointer;transition:all 0.18s;
+  color:var(--muted);font-size:0.85rem;font-weight:600;
   margin-bottom:2px;text-decoration:none;
 }
-.nav-item:hover{background:rgba(255,255,255,0.04);color:var(--text);}
-.nav-item.active{background:var(--teal-bg);color:var(--teal);}
+.nav-item:hover{background:var(--lavender-light);color:var(--lavender);}
+.nav-item.active{background:linear-gradient(135deg,var(--lavender-light),var(--mint-light));color:var(--lavender);border:1.5px solid var(--border);}
 .nav-icon{font-size:1rem;width:20px;text-align:center;}
-.nav-badge{margin-left:auto;background:var(--coral);color:#fff;font-size:0.65rem;font-weight:600;padding:2px 7px;border-radius:100px;}
-.nav-badge.gold{background:var(--gold);color:var(--navy);}
-
+.nav-badge{margin-left:auto;background:var(--peach);color:#fff;font-size:0.63rem;font-weight:800;padding:2px 7px;border-radius:100px;}
+.nav-badge.gold{background:var(--butter);color:var(--text);}
 .sidebar-progress{
-  margin-top:auto;background:var(--card);border:1px solid var(--border);
-  border-radius:12px;padding:14px;
+  margin-top:auto;
+  background:linear-gradient(135deg,var(--lavender-light),var(--mint-light));
+  border:1.5px solid var(--border);border-radius:16px;padding:16px;
 }
-.sp-label{font-size:0.75rem;color:var(--muted);margin-bottom:6px;}
-.sp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;margin-bottom:10px;}
-.sp-bar-track{background:var(--border);border-radius:100px;height:5px;margin-bottom:6px;}
-.sp-bar-fill{background:linear-gradient(90deg,var(--teal),var(--teal-dim));height:5px;border-radius:100px;width:68%;}
-.sp-pct{font-size:0.75rem;color:var(--teal);}
+.sp-label{font-size:0.72rem;color:var(--muted);margin-bottom:4px;font-weight:600;}
+.sp-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;margin-bottom:10px;color:var(--text);}
+.sp-bar-track{background:rgba(155,135,245,0.15);border-radius:100px;height:7px;margin-bottom:6px;}
+.sp-bar-fill{background:linear-gradient(90deg,var(--lavender),var(--mint));height:7px;border-radius:100px;width:68%;}
+.sp-pct{font-size:0.75rem;color:var(--lavender);font-weight:700;}
+.badge-new{
+  background:var(--butter-light);color:var(--butter-dim);
+  font-size:0.63rem;font-weight:800;padding:2px 8px;
+  border-radius:100px;margin-left:6px;letter-spacing:0.04em;
+}
 
-/* ── MAIN CONTENT ── */
-.main{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:22px;}
-
-/* ── PAGE VIEWS ── */
-.page{display:none;flex-direction:column;gap:22px;}
+/* MAIN */
+.main{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:20px;}
+.page{display:none;flex-direction:column;gap:18px;}
 .page.active{display:flex;}
 
-/* ── CARDS ── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;}
+/* SEGMENT TABS */
+.seg-tabs{
+  display:flex;
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:16px;padding:4px;gap:3px;
+  box-shadow:var(--shadow-sm);
+}
+.seg-tab{
+  flex:1;padding:9px 14px;border:none;background:transparent;
+  color:var(--muted);font-family:'Nunito',sans-serif;font-size:0.82rem;font-weight:700;
+  cursor:pointer;border-radius:12px;transition:all 0.2s;text-align:center;
+}
+.seg-tab:hover{background:var(--lavender-light);color:var(--lavender);}
+.seg-tab.active{
+  background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));
+  color:#fff;
+  box-shadow:0 3px 12px rgba(155,135,245,0.35);
+}
+.seg-panel{display:none;flex-direction:column;gap:18px;}
+.seg-panel.active{display:flex;}
+
+/* PAGE HEADER */
+.page-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.page-eyebrow{font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;font-weight:700;}
+.page-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;letter-spacing:-0.01em;color:var(--text);}
+
+/* CARDS */
+.card{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:18px;padding:20px;
+  box-shadow:var(--shadow-sm);
+  transition:box-shadow 0.18s;
+}
+.card:hover{box-shadow:var(--shadow-md);}
 .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
-.card-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;}
-.card-action{font-size:0.78rem;color:var(--teal);cursor:pointer;font-weight:500;}
+.card-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;color:var(--text);}
+.card-action{font-size:0.78rem;color:var(--lavender);cursor:pointer;font-weight:700;}
 .card-action:hover{text-decoration:underline;}
 
-/* ── DASHBOARD ── */
+/* STAT MINIS */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
 .stat-mini{
-  background:var(--card);border:1px solid var(--border);border-radius:12px;
-  padding:16px 18px;position:relative;overflow:hidden;
+  background:var(--card);border:1.5px solid var(--border);border-radius:18px;
+  padding:18px 18px;position:relative;overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:transform 0.18s,box-shadow 0.18s;
 }
-.stat-mini::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.stat-mini.teal::before{background:var(--teal);}
-.stat-mini.gold::before{background:var(--gold);}
-.stat-mini.coral::before{background:var(--coral);}
-.stat-mini.violet::before{background:var(--violet);}
-.stat-mini-label{font-size:0.75rem;color:var(--muted);margin-bottom:6px;}
-.stat-mini-val{font-family:'Syne',sans-serif;font-weight:800;font-size:1.7rem;line-height:1;}
-.stat-mini-sub{font-size:0.72rem;color:var(--muted);margin-top:4px;}
-.stat-mini.teal .stat-mini-val{color:var(--teal);}
-.stat-mini.gold .stat-mini-val{color:var(--gold);}
-.stat-mini.coral .stat-mini-val{color:var(--coral);}
-.stat-mini.violet .stat-mini-val{color:var(--violet);}
+.stat-mini:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.stat-mini::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0;}
+.stat-mini.teal::before{background:linear-gradient(90deg,var(--mint),#7EECD9);}
+.stat-mini.gold::before{background:linear-gradient(90deg,var(--butter),#FFE07A);}
+.stat-mini.coral::before{background:linear-gradient(90deg,var(--peach),#FFAD99);}
+.stat-mini.violet::before{background:linear-gradient(90deg,var(--lavender),#C4B8FF);}
+.stat-mini::after{
+  content:'';position:absolute;bottom:-20px;right:-20px;
+  width:80px;height:80px;border-radius:50%;opacity:0.07;
+}
+.stat-mini.teal::after{background:var(--mint);}
+.stat-mini.gold::after{background:var(--butter);}
+.stat-mini.coral::after{background:var(--peach);}
+.stat-mini.violet::after{background:var(--lavender);}
+.stat-mini-label{font-size:0.73rem;color:var(--muted);margin-bottom:8px;font-weight:700;letter-spacing:0.02em;}
+.stat-mini-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;line-height:1;}
+.stat-mini-sub{font-size:0.7rem;color:var(--muted);margin-top:5px;font-weight:600;}
+.stat-mini.teal .stat-mini-val{color:var(--mint);}
+.stat-mini.gold .stat-mini-val{color:var(--butter-dim);}
+.stat-mini.coral .stat-mini-val{color:var(--peach);}
+.stat-mini.violet .stat-mini-val{color:var(--lavender);}
 
-.dash-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;}
+/* DASH GRID */
+.dash-grid{display:grid;grid-template-columns:1fr 310px;gap:18px;}
 
-/* TASK LIST */
+/* TASKS */
 .task-item{
   display:flex;align-items:center;gap:12px;
-  padding:11px 12px;border-radius:10px;
-  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
-  margin-bottom:8px;transition:background 0.15s;cursor:pointer;
+  padding:12px 14px;border-radius:14px;
+  background:var(--bg2);border:1.5px solid var(--border);
+  margin-bottom:8px;transition:all 0.18s;cursor:pointer;
 }
 .task-item:last-child{margin-bottom:0;}
-.task-item:hover{background:rgba(255,255,255,0.05);}
+.task-item:hover{background:var(--lavender-light);border-color:var(--lavender);transform:translateX(3px);}
 .task-cb{
-  width:18px;height:18px;border-radius:50%;border:2px solid var(--border2);
+  width:20px;height:20px;border-radius:50%;border:2px solid var(--border2);
   flex-shrink:0;display:flex;align-items:center;justify-content:center;
-  font-size:9px;transition:all 0.2s;cursor:pointer;
+  font-size:10px;transition:all 0.2s;cursor:pointer;background:#fff;
 }
-.task-cb.done{background:var(--teal);border-color:var(--teal);color:var(--navy);}
+.task-cb.done{background:linear-gradient(135deg,var(--mint),var(--mint-dim));border-color:var(--mint);color:#fff;}
 .task-body{flex:1;min-width:0;}
-.task-name{font-size:0.85rem;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.task-name{font-size:0.85rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
 .task-name.done{text-decoration:line-through;color:var(--muted);}
-.task-meta{font-size:0.72rem;color:var(--muted);margin-top:2px;}
-.task-tag{font-size:0.68rem;padding:3px 9px;border-radius:100px;font-weight:500;flex-shrink:0;}
-.t-urgent{background:var(--coral-bg);color:var(--coral);}
-.t-exam{background:var(--violet-bg);color:var(--violet);}
-.t-today{background:var(--gold-bg);color:var(--gold);}
-.t-done{background:var(--teal-bg);color:var(--teal);}
-.t-soon{background:rgba(255,255,255,0.06);color:var(--softer);}
+.task-meta{font-size:0.72rem;color:var(--muted);margin-top:2px;font-weight:600;}
+.task-tag{font-size:0.67rem;padding:4px 10px;border-radius:100px;font-weight:800;flex-shrink:0;}
+.t-urgent{background:var(--peach-light);color:var(--peach-dim);}
+.t-exam{background:var(--lavender-light);color:var(--lavender-dim);}
+.t-today{background:var(--butter-light);color:var(--butter-dim);}
+.t-done{background:var(--mint-light);color:var(--mint-dim);}
 
 /* MINI CALENDAR */
 .mini-cal{font-size:0.8rem;}
 .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-.cal-nav-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:4px 8px;border-radius:6px;transition:background 0.15s;}
-.cal-nav-btn:hover{background:rgba(255,255,255,0.05);color:var(--text);}
-.cal-month{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;}
+.cal-nav-btn{background:var(--lavender-light);border:none;color:var(--lavender);cursor:pointer;font-size:0.9rem;padding:5px 10px;border-radius:10px;transition:all 0.15s;font-weight:700;}
+.cal-nav-btn:hover{background:var(--lavender);color:#fff;}
+.cal-month{font-family:'Nunito',sans-serif;font-weight:900;font-size:0.95rem;color:var(--text);}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}
-.cal-dow{color:var(--muted);font-size:0.68rem;font-weight:500;padding:4px 0;letter-spacing:0.05em;}
-.cal-day{
-  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
-  border-radius:50%;cursor:pointer;font-size:0.78rem;transition:background 0.15s;
-}
-.cal-day:hover{background:rgba(255,255,255,0.07);}
-.cal-day.today{background:var(--teal);color:var(--navy);font-weight:700;}
+.cal-dow{color:var(--muted);font-size:0.66rem;font-weight:800;padding:5px 0;letter-spacing:0.04em;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;font-size:0.78rem;transition:all 0.15s;font-weight:600;}
+.cal-day:hover{background:var(--lavender-light);color:var(--lavender);}
+.cal-day.today{background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));color:#fff;font-weight:900;box-shadow:0 3px 10px rgba(155,135,245,0.4);}
 .cal-day.has-event{position:relative;}
-.cal-day.has-event::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--gold);border-radius:50%;}
-.cal-day.other-month{color:var(--border2);}
+.cal-day.has-event::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;background:var(--peach);border-radius:50%;}
+.cal-day.other-month{color:var(--softer);}
 
-/* UPCOMING REMINDERS */
-.reminder-item{
-  display:flex;align-items:flex-start;gap:12px;
-  padding:10px 12px;border-radius:10px;
-  background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.05);
-  margin-bottom:8px;
-}
-.reminder-dot{
-  width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px;
-}
+/* REMINDERS dash */
+.reminder-item{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border-radius:14px;background:var(--bg2);border:1.5px solid var(--border);margin-bottom:8px;transition:all 0.15s;}
+.reminder-item:hover{border-color:var(--lavender);transform:translateX(2px);}
+.reminder-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 .reminder-body{flex:1;}
-.reminder-title{font-size:0.83rem;font-weight:400;margin-bottom:3px;}
-.reminder-time{font-size:0.72rem;color:var(--muted);}
-.reminder-course{font-size:0.7rem;font-weight:500;margin-left:auto;padding:2px 8px;border-radius:100px;}
+.reminder-title{font-size:0.83rem;font-weight:700;margin-bottom:3px;color:var(--text);}
+.reminder-time{font-size:0.71rem;color:var(--muted);font-weight:600;}
 
-/* ── SCHEDULE PAGE ── */
-.schedule-toolbar{display:flex;align-items:center;gap:10px;}
-.week-nav{display:flex;align-items:center;gap:8px;}
-.week-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:7px;cursor:pointer;font-size:0.8rem;font-family:'DM Sans',sans-serif;transition:background 0.15s;}
-.week-btn:hover{background:var(--card2);}
-.week-label{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;min-width:180px;text-align:center;}
-.view-toggle{display:flex;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-left:auto;}
-.vt-btn{padding:6px 14px;font-size:0.78rem;font-family:'DM Sans',sans-serif;border:none;background:none;color:var(--muted);cursor:pointer;transition:all 0.15s;}
-.vt-btn.active{background:var(--teal-bg);color:var(--teal);}
+/* SUBJECTS GRID */
+.subjects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.subject-card{
+  background:var(--card);border:1.5px solid var(--border);border-radius:20px;
+  padding:20px;cursor:pointer;
+  transition:border-color 0.18s,transform 0.18s,box-shadow 0.18s;
+  position:relative;overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.subject-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0;}
+.subject-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);}
+.sc-math::before{background:linear-gradient(90deg,var(--mint),#7EECD9);}
+.sc-math:hover{border-color:var(--mint);}
+.sc-eng::before{background:linear-gradient(90deg,var(--butter),#FFE07A);}
+.sc-eng:hover{border-color:var(--butter);}
+.sc-phys::before{background:linear-gradient(90deg,var(--peach),#FFAD99);}
+.sc-phys:hover{border-color:var(--peach);}
+.sc-cs::before{background:linear-gradient(90deg,var(--lavender),#C4B8FF);}
+.sc-cs:hover{border-color:var(--lavender);}
+.sc-fil::before{background:linear-gradient(90deg,var(--sky),#A8D8FF);}
+.sc-fil:hover{border-color:var(--sky);}
+.subj-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.subj-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.subj-badge{font-size:0.67rem;font-weight:800;padding:4px 12px;border-radius:100px;}
+.subj-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;margin-bottom:2px;color:var(--text);}
+.subj-desc{font-size:0.77rem;color:var(--muted);margin-bottom:14px;font-weight:600;}
+.subj-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.subj-stat{background:var(--bg2);border-radius:12px;padding:9px 10px;text-align:center;border:1px solid var(--border);}
+.subj-stat-val{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;margin-bottom:2px;}
+.subj-stat-lbl{font-size:0.63rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.07em;font-weight:700;}
+.subj-progress-row{display:flex;align-items:center;gap:10px;}
+.subj-prog-bar{flex:1;height:7px;background:var(--border);border-radius:100px;overflow:hidden;}
+.subj-prog-fill{height:100%;border-radius:100px;transition:width 0.5s cubic-bezier(.4,0,.2,1);}
+.subj-prog-pct{font-size:0.73rem;font-weight:800;flex-shrink:0;}
+.subj-next{margin-top:12px;padding:9px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--border);font-size:0.75rem;color:var(--muted);font-weight:600;}
+.subj-next strong{color:var(--text);font-weight:700;}
 
+/* SCHEDULE */
 .week-grid-wrapper{overflow-x:auto;}
-.week-grid{
-  display:grid;grid-template-columns:60px repeat(5,1fr);
-  min-width:700px;
-}
-.wg-header{
-  display:contents;
-}
-.wg-day-header{
-  padding:8px 6px;text-align:center;font-size:0.75rem;color:var(--muted);
-  border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--card);
-  font-family:'Syne',sans-serif;font-weight:600;
-}
-.wg-day-header.today-col{color:var(--teal);}
-.wg-day-header .day-num{
-  display:inline-flex;width:28px;height:28px;align-items:center;justify-content:center;
-  border-radius:50%;margin-bottom:2px;font-size:0.88rem;
-}
-.wg-day-header.today-col .day-num{background:var(--teal);color:var(--navy);}
-.wg-time-col{
-  padding:0 8px;text-align:right;font-size:0.68rem;color:var(--muted);
-  border-right:1px solid var(--border);
-}
-.wg-slot{border-bottom:1px solid rgba(255,255,255,0.03);border-right:1px solid var(--border);min-height:40px;position:relative;}
+.week-grid{display:grid;grid-template-columns:60px repeat(5,1fr);min-width:700px;}
+.wg-time-label{padding:4px 8px 0;text-align:right;font-size:0.67rem;color:var(--muted);border-right:1.5px solid var(--border);border-bottom:1px solid var(--bg2);white-space:nowrap;line-height:40px;font-weight:600;}
+.wg-time-col{padding:0 8px;text-align:right;font-size:0.68rem;color:var(--muted);border-right:1.5px solid var(--border);}
+.wg-day-header{padding:8px 6px;text-align:center;font-size:0.75rem;color:var(--muted);border-bottom:1.5px solid var(--border);position:sticky;top:0;background:var(--card);font-family:'Nunito',sans-serif;font-weight:800;}
+.wg-day-header.today-col{color:var(--lavender);}
+.wg-day-header .day-num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;margin-bottom:2px;font-size:0.9rem;}
+.wg-day-header.today-col .day-num{background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));color:#fff;}
+.wg-slot{border-bottom:1px solid var(--bg2);border-right:1.5px solid var(--border);min-height:40px;position:relative;}
 .wg-slot:last-child{border-right:none;}
-.wg-time-row{display:contents;}
-.wg-time-label{
-  padding:4px 8px 0;text-align:right;font-size:0.68rem;color:var(--muted);
-  border-right:1px solid var(--border);border-bottom:1px solid rgba(255,255,255,0.03);
-  white-space:nowrap;line-height:40px;
-}
-.sched-block{
-  position:absolute;left:3px;right:3px;border-radius:7px;
-  padding:5px 8px;font-size:0.72rem;line-height:1.35;
-  cursor:pointer;overflow:hidden;transition:opacity 0.15s;z-index:2;
-}
-.sched-block:hover{opacity:0.85;}
-.sched-block .sb-title{font-weight:600;display:block;}
-.sched-block .sb-sub{opacity:0.8;}
-.sb-teal{background:rgba(0,212,170,0.2);border-left:3px solid var(--teal);color:var(--teal);}
-.sb-gold{background:rgba(255,184,0,0.2);border-left:3px solid var(--gold);color:var(--gold);}
-.sb-coral{background:rgba(255,95,87,0.2);border-left:3px solid var(--coral);color:var(--coral);}
-.sb-violet{background:rgba(139,124,246,0.2);border-left:3px solid var(--violet);color:var(--violet);}
-.sb-blue{background:rgba(56,145,255,0.2);border-left:3px solid #3891FF;color:#3891FF;}
+.sched-block{position:absolute;left:3px;right:3px;border-radius:10px;padding:5px 8px;font-size:0.71rem;line-height:1.35;cursor:pointer;overflow:hidden;transition:opacity 0.15s,transform 0.15s;z-index:2;}
+.sched-block:hover{opacity:0.85;transform:scale(1.01);}
+.sched-block .sb-title{font-weight:800;display:block;}
+.sched-block .sb-sub{opacity:0.75;}
+.sb-teal{background:var(--mint-light);border-left:3px solid var(--mint);color:var(--mint-dim);}
+.sb-gold{background:var(--butter-light);border-left:3px solid var(--butter);color:var(--butter-dim);}
+.sb-coral{background:var(--peach-light);border-left:3px solid var(--peach);color:var(--peach-dim);}
+.sb-violet{background:var(--lavender-light);border-left:3px solid var(--lavender);color:var(--lavender-dim);}
+.sb-blue{background:var(--sky-light);border-left:3px solid var(--sky);color:var(--sky-dim);}
+.view-toggle{display:flex;background:var(--bg2);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;}
+.vt-btn{padding:6px 14px;font-size:0.78rem;font-family:'Nunito',sans-serif;font-weight:700;border:none;background:none;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.vt-btn.active{background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));color:#fff;}
 
-/* ── ASSIGNMENTS PAGE ── */
-.assign-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
-.filter-pills{display:flex;gap:6px;}
+/* ASSIGNMENTS */
+.filter-pills{display:flex;gap:6px;flex-wrap:wrap;}
 .pill{
-  padding:5px 14px;border-radius:100px;font-size:0.78rem;font-weight:400;
-  border:1px solid var(--border);background:transparent;color:var(--muted);
-  cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;
+  padding:6px 16px;border-radius:100px;font-size:0.78rem;font-weight:700;
+  border:1.5px solid var(--border);background:var(--card);color:var(--muted);
+  cursor:pointer;transition:all 0.18s;font-family:'Nunito',sans-serif;
 }
-.pill.active{background:var(--teal-bg);border-color:var(--teal);color:var(--teal);}
-.pill:hover:not(.active){background:rgba(255,255,255,0.04);color:var(--text);}
+.pill.active{background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));border-color:var(--lavender);color:#fff;box-shadow:0 3px 10px rgba(155,135,245,0.3);}
+.pill:hover:not(.active){background:var(--lavender-light);color:var(--lavender);border-color:var(--lavender);}
 .add-btn{
-  margin-left:auto;background:var(--teal);color:var(--navy);
-  border:none;padding:7px 16px;border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:500;
-  cursor:pointer;transition:background 0.15s;
+  background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));
+  color:#fff;border:none;padding:8px 18px;border-radius:12px;
+  font-family:'Nunito',sans-serif;font-size:0.84rem;font-weight:800;
+  cursor:pointer;transition:all 0.18s;
+  box-shadow:0 3px 12px rgba(155,135,245,0.3);
 }
-.add-btn:hover{background:var(--teal-dim);}
-
+.add-btn:hover{transform:translateY(-1px);box-shadow:0 5px 18px rgba(155,135,245,0.4);}
 .assign-table{width:100%;border-collapse:collapse;}
-.assign-table th{
-  text-align:left;font-size:0.72rem;font-weight:500;letter-spacing:0.06em;
-  text-transform:uppercase;color:var(--muted);
-  padding:8px 12px;border-bottom:1px solid var(--border);
-}
-.assign-table td{
-  padding:11px 12px;border-bottom:1px solid rgba(255,255,255,0.03);
-  font-size:0.84rem;vertical-align:middle;
-}
-.assign-table tr:hover td{background:rgba(255,255,255,0.02);}
+.assign-table th{text-align:left;font-size:0.7rem;font-weight:800;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1.5px solid var(--border);}
+.assign-table td{padding:12px 14px;border-bottom:1px solid var(--bg2);font-size:0.84rem;vertical-align:middle;}
+.assign-table tr:hover td{background:var(--lavender-light);}
 .assign-table tr.done-row td{opacity:0.5;}
-.subject-chip{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:0.75rem;font-weight:500;padding:3px 10px;border-radius:100px;
-}
-.priority-dot{
-  display:inline-block;width:8px;height:8px;border-radius:50%;
-}
-.progress-bar{
-  background:var(--border);border-radius:100px;height:4px;width:80px;
-  display:inline-block;vertical-align:middle;
-}
-.progress-fill{height:4px;border-radius:100px;background:var(--teal);}
-.progress-fill.warn{background:var(--gold);}
-.progress-fill.danger{background:var(--coral);}
-.act-btn{
-  background:none;border:none;color:var(--muted);cursor:pointer;
-  font-size:0.78rem;padding:4px 8px;border-radius:5px;transition:all 0.15s;
-}
-.act-btn:hover{background:rgba(255,255,255,0.05);color:var(--text);}
+.subject-chip{display:inline-flex;align-items:center;gap:6px;font-size:0.74rem;font-weight:800;padding:4px 12px;border-radius:100px;}
+.priority-dot{display:inline-block;width:9px;height:9px;border-radius:50%;}
+.progress-bar{background:var(--border);border-radius:100px;height:5px;width:80px;display:inline-block;vertical-align:middle;}
+.progress-fill{height:5px;border-radius:100px;background:var(--mint);}
+.progress-fill.warn{background:var(--butter);}
+.progress-fill.danger{background:var(--peach);}
+.act-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:0.85rem;padding:4px 8px;border-radius:8px;transition:all 0.15s;}
+.act-btn:hover{background:var(--lavender-light);color:var(--lavender);}
 
-/* ── REMINDERS PAGE ── */
+/* KANBAN */
+.kanban-board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start;}
+.kanban-col{background:var(--bg2);border:1.5px solid var(--border);border-radius:18px;padding:14px;box-shadow:var(--shadow-sm);}
+.kanban-col-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.kanban-col-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:0.84rem;}
+.kanban-count{font-size:0.7rem;background:var(--card);border:1.5px solid var(--border);padding:2px 9px;border-radius:100px;color:var(--muted);font-weight:700;}
+.kanban-card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:13px;margin-bottom:8px;cursor:pointer;transition:all 0.18s;box-shadow:var(--shadow-sm);}
+.kanban-card:last-child{margin-bottom:0;}
+.kanban-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:var(--lavender);}
+.kc-name{font-size:0.82rem;font-weight:700;margin-bottom:7px;line-height:1.4;color:var(--text);}
+.kc-chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:9px;}
+.kc-chip{font-size:0.67rem;padding:3px 9px;border-radius:100px;font-weight:800;}
+.kc-due{font-size:0.7rem;color:var(--muted);display:flex;align-items:center;gap:4px;font-weight:600;}
+.kc-due.urgent{color:var(--peach-dim);}
+
+/* EXAMS */
+.exams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.exam-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:18px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm);transition:all 0.18s;}
+.exam-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.exam-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:18px 18px 0 0;}
+.exam-card.high::before{background:linear-gradient(90deg,var(--peach),#FFAD99);}
+.exam-card.medium::before{background:linear-gradient(90deg,var(--butter),#FFE07A);}
+.exam-card.low::before{background:linear-gradient(90deg,var(--mint),#7EECD9);}
+.exam-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.exam-subject{font-size:0.7rem;font-weight:800;padding:4px 12px;border-radius:100px;}
+.exam-countdown{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.7rem;line-height:1;}
+.exam-countdown-label{font-size:0.67rem;color:var(--muted);font-weight:700;}
+.exam-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.92rem;margin-bottom:4px;color:var(--text);}
+.exam-date{font-size:0.74rem;color:var(--muted);margin-bottom:12px;font-weight:600;}
+.exam-prep-bar-track{height:6px;background:var(--border);border-radius:100px;margin-bottom:6px;}
+.exam-prep-bar-fill{height:6px;border-radius:100px;}
+.exam-prep-label{font-size:0.7rem;color:var(--muted);font-weight:600;}
+
+/* REMINDERS PAGE */
 .rem-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .today-reminders{display:flex;flex-direction:column;gap:10px;}
-.today-rem-item{
-  display:flex;align-items:center;gap:14px;
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:12px;padding:14px 16px;
-  transition:transform 0.15s,border-color 0.15s;cursor:pointer;
-}
-.today-rem-item:hover{transform:translateX(3px);border-color:var(--border2);}
-.rem-time-block{
-  min-width:52px;text-align:center;
-  font-family:'Syne',sans-serif;font-weight:700;
-}
-.rem-time-block .rtb-time{font-size:1rem;line-height:1;}
-.rem-time-block .rtb-ampm{font-size:0.65rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400;}
-.rem-divider{width:1px;height:36px;background:var(--border);}
+.today-rem-item{display:flex;align-items:center;gap:14px;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:14px 16px;transition:all 0.18s;cursor:pointer;box-shadow:var(--shadow-sm);}
+.today-rem-item:hover{transform:translateX(4px);border-color:var(--lavender);box-shadow:var(--shadow-md);}
+.rem-time-block{min-width:54px;text-align:center;font-family:'Nunito',sans-serif;font-weight:900;}
+.rem-time-block .rtb-time{font-size:1.05rem;line-height:1;}
+.rem-time-block .rtb-ampm{font-size:0.64rem;color:var(--muted);font-family:'Quicksand',sans-serif;font-weight:600;}
+.rem-divider{width:1.5px;height:36px;background:var(--border);flex-shrink:0;}
 .rem-content{flex:1;}
-.rem-content h4{font-size:0.88rem;font-weight:500;margin-bottom:3px;}
-.rem-content p{font-size:0.75rem;color:var(--muted);}
-.rem-icon{
-  width:34px;height:34px;border-radius:10px;
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  flex-shrink:0;
-}
-
+.rem-content h4{font-size:0.88rem;font-weight:800;margin-bottom:3px;color:var(--text);}
+.rem-content p{font-size:0.74rem;color:var(--muted);font-weight:600;}
+.rem-icon{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0;}
 .notif-feed{display:flex;flex-direction:column;gap:8px;}
-.notif-item{
-  display:flex;align-items:flex-start;gap:12px;
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:10px;padding:12px 14px;
-}
-.notif-item.unread{border-color:rgba(0,212,170,0.2);}
+.notif-item{display:flex;align-items:flex-start;gap:12px;background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:13px 15px;transition:all 0.15s;box-shadow:var(--shadow-sm);}
+.notif-item:hover{border-color:var(--lavender);}
+.notif-item.unread{border-color:var(--mint);background:var(--mint-light);}
 .notif-ic{font-size:1rem;flex-shrink:0;margin-top:1px;}
 .notif-body{flex:1;}
-.notif-body strong{font-size:0.83rem;font-weight:500;display:block;margin-bottom:2px;}
-.notif-body p{font-size:0.76rem;color:var(--muted);}
-.notif-ago{font-size:0.7rem;color:var(--muted);margin-left:auto;flex-shrink:0;}
+.notif-body strong{font-size:0.83rem;font-weight:800;display:block;margin-bottom:2px;color:var(--text);}
+.notif-body p{font-size:0.75rem;color:var(--muted);font-weight:600;}
+.notif-ago{font-size:0.69rem;color:var(--muted);margin-left:auto;flex-shrink:0;font-weight:600;}
 
-/* ── AI RECOMMENDATIONS ── */
-.ai-page{display:flex;flex-direction:column;gap:18px;}
+/* REMINDER FORM */
+.add-reminder-form{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:16px;box-shadow:var(--shadow-sm);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:7px;}
+.form-label{font-size:0.73rem;color:var(--muted);font-weight:800;letter-spacing:0.04em;text-transform:uppercase;}
+.form-input,.form-select{
+  background:var(--bg2);border:1.5px solid var(--border);color:var(--text);
+  padding:10px 14px;border-radius:12px;
+  font-family:'Quicksand',sans-serif;font-size:0.87rem;font-weight:600;
+  outline:none;transition:all 0.18s;width:100%;
+}
+.form-input:focus,.form-select:focus{border-color:var(--lavender);background:var(--lavender-light);box-shadow:0 0 0 3px rgba(155,135,245,0.12);}
+.form-select option{background:var(--card);}
+
+/* AI PAGE */
 .ai-banner{
-  background:linear-gradient(135deg,rgba(0,212,170,0.12),rgba(139,124,246,0.08));
-  border:1px solid rgba(0,212,170,0.2);border-radius:16px;padding:24px;
-  display:flex;align-items:center;gap:20px;
+  background:linear-gradient(135deg,var(--lavender-light),var(--mint-light));
+  border:1.5px solid var(--border);border-radius:20px;padding:26px;
+  display:flex;align-items:center;gap:20px;box-shadow:var(--shadow-sm);
 }
-.ai-banner-icon{font-size:2.5rem;}
-.ai-banner h2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.15rem;margin-bottom:6px;}
-.ai-banner p{color:var(--softer);font-size:0.85rem;line-height:1.6;}
-
+.ai-banner-icon{font-size:2.8rem;}
+.ai-banner h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;margin-bottom:6px;color:var(--text);}
+.ai-banner p{color:var(--muted);font-size:0.85rem;line-height:1.65;font-weight:600;}
 .ai-recs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-.ai-rec-card{
-  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;
-  transition:border-color 0.15s,transform 0.15s;cursor:pointer;
-}
-.ai-rec-card:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-2px);}
+.ai-rec-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:18px;transition:all 0.18s;cursor:pointer;box-shadow:var(--shadow-sm);}
+.ai-rec-card:hover{border-color:var(--lavender);transform:translateY(-2px);box-shadow:var(--shadow-md);}
 .ai-rec-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.ai-rec-ic{
-  width:36px;height:36px;border-radius:10px;background:var(--teal-bg);
-  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
-}
-.ai-rec-card h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;}
-.ai-rec-card .rec-type{font-size:0.7rem;color:var(--teal);font-weight:500;}
-.ai-rec-card p{font-size:0.82rem;color:var(--softer);line-height:1.6;margin-bottom:12px;}
+.ai-rec-ic{width:38px;height:38px;border-radius:12px;background:var(--lavender-light);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.ai-rec-card h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;color:var(--text);}
+.ai-rec-card .rec-type{font-size:0.68rem;color:var(--lavender);font-weight:800;}
+.ai-rec-card p{font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:600;}
 .rec-action{
-  background:var(--teal-bg);border:1px solid rgba(0,212,170,0.2);
-  color:var(--teal);padding:6px 14px;border-radius:7px;
-  font-size:0.78rem;font-weight:500;cursor:pointer;border-style:solid;
-  font-family:'DM Sans',sans-serif;transition:background 0.15s;
+  background:var(--lavender-light);border:1.5px solid var(--border);
+  color:var(--lavender);padding:7px 16px;border-radius:100px;
+  font-size:0.78rem;font-weight:800;cursor:pointer;
+  font-family:'Nunito',sans-serif;transition:all 0.18s;
 }
-.rec-action:hover{background:rgba(0,212,170,0.15);}
-
+.rec-action:hover{background:var(--lavender);color:#fff;border-color:var(--lavender);}
 .study-insights{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
-.insight-card{
-  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;
-}
-.insight-card h4{font-size:0.8rem;color:var(--muted);margin-bottom:10px;font-weight:400;}
-.insight-big{font-family:'Syne',sans-serif;font-weight:800;font-size:1.8rem;margin-bottom:4px;}
-.insight-sub{font-size:0.75rem;color:var(--muted);}
-
+.insight-card{background:var(--card);border:1.5px solid var(--border);border-radius:18px;padding:18px;box-shadow:var(--shadow-sm);transition:all 0.18s;}
+.insight-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
+.insight-card h4{font-size:0.78rem;color:var(--muted);margin-bottom:10px;font-weight:700;}
+.insight-big{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.9rem;margin-bottom:4px;}
+.insight-sub{font-size:0.74rem;color:var(--muted);font-weight:600;}
 .heatmap-row{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0;}
-.hm-cell{
-  width:20px;height:20px;border-radius:4px;background:var(--border);
-  transition:transform 0.15s;cursor:default;
-}
-.hm-cell:hover{transform:scale(1.2);}
-.hm-1{background:rgba(0,212,170,0.2);}
-.hm-2{background:rgba(0,212,170,0.4);}
-.hm-3{background:rgba(0,212,170,0.65);}
-.hm-4{background:var(--teal);}
+.hm-cell{width:20px;height:20px;border-radius:5px;background:var(--border);transition:transform 0.15s;}
+.hm-cell:hover{transform:scale(1.25);}
+.hm-1{background:rgba(155,135,245,0.2);}
+.hm-2{background:rgba(155,135,245,0.4);}
+.hm-3{background:rgba(155,135,245,0.65);}
+.hm-4{background:var(--lavender);}
 
-/* ── CHATBOT ── */
+/* CHATBOT */
 #chatbot-fab{
   position:fixed;bottom:24px;right:24px;z-index:200;
-  width:52px;height:52px;border-radius:50%;
-  background:linear-gradient(135deg,var(--teal),var(--teal-dim));
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));
   border:none;cursor:pointer;
-  box-shadow:0 4px 20px rgba(0,212,170,0.35);
-  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+  box-shadow:0 6px 24px rgba(155,135,245,0.45);
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
   transition:transform 0.2s,box-shadow 0.2s;
 }
-#chatbot-fab:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(0,212,170,0.45);}
-.fab-badge{
-  position:absolute;top:0;right:0;
-  background:var(--coral);color:#fff;
-  font-size:0.6rem;font-weight:700;
-  width:16px;height:16px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  border:2px solid var(--navy);
-}
-
-#chatbot-window{
-  position:fixed;bottom:88px;right:24px;z-index:200;
-  width:340px;height:480px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  display:none;flex-direction:column;overflow:hidden;
-}
+#chatbot-fab:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(155,135,245,0.55);}
+.fab-badge{position:absolute;top:-2px;right:-2px;background:var(--peach);color:#fff;font-size:0.6rem;font-weight:800;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--bg);}
+#chatbot-window{position:fixed;bottom:92px;right:24px;z-index:200;width:350px;height:500px;background:var(--card);border:1.5px solid var(--border);border-radius:22px;box-shadow:0 20px 60px rgba(100,80,200,0.18);display:none;flex-direction:column;overflow:hidden;}
 #chatbot-window.open{display:flex;}
-
-.chat-header{
-  padding:14px 16px;
-  background:linear-gradient(135deg,rgba(0,212,170,0.1),rgba(139,124,246,0.06));
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;
-}
-.chat-av{
-  width:32px;height:32px;border-radius:50%;
-  background:linear-gradient(135deg,var(--teal),var(--teal-dim));
-  display:flex;align-items:center;justify-content:center;font-size:1rem;
-  flex-shrink:0;
-}
-.chat-header-info h4{font-family:'Syne',sans-serif;font-weight:700;font-size:0.88rem;}
-.chat-header-info p{font-size:0.72rem;color:var(--teal);}
+.chat-header{padding:15px 16px;background:linear-gradient(135deg,var(--lavender-light),var(--mint-light));border-bottom:1.5px solid var(--border);display:flex;align-items:center;gap:10px;}
+.chat-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--lavender),var(--mint));display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.chat-header-info h4{font-family:'Nunito',sans-serif;font-weight:800;font-size:0.9rem;color:var(--text);}
+.chat-header-info p{font-size:0.72rem;color:var(--mint-dim);font-weight:600;}
 .chat-close{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;transition:color 0.15s;}
 .chat-close:hover{color:var(--text);}
-
 .chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;}
 .chat-messages::-webkit-scrollbar{width:4px;}
-.chat-messages::-webkit-scrollbar-track{background:transparent;}
 .chat-messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px;}
-
-.msg{display:flex;flex-direction:column;max-width:85%;}
+.msg{display:flex;flex-direction:column;max-width:86%;}
 .msg.bot{align-self:flex-start;}
 .msg.user{align-self:flex-end;}
-.msg-bubble{
-  padding:9px 13px;border-radius:12px;font-size:0.82rem;line-height:1.55;
-}
-.msg.bot .msg-bubble{background:var(--card2);border:1px solid var(--border);border-bottom-left-radius:3px;}
-.msg.user .msg-bubble{background:var(--teal-bg);border:1px solid rgba(0,212,170,0.25);color:var(--teal);border-bottom-right-radius:3px;}
-.msg-time{font-size:0.65rem;color:var(--muted);margin-top:3px;}
+.msg-bubble{padding:10px 14px;border-radius:16px;font-size:0.82rem;line-height:1.6;font-weight:600;}
+.msg.bot .msg-bubble{background:var(--bg2);border:1.5px solid var(--border);border-bottom-left-radius:4px;color:var(--text);}
+.msg.user .msg-bubble{background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));color:#fff;border-bottom-right-radius:4px;}
+.msg-time{font-size:0.64rem;color:var(--muted);margin-top:3px;font-weight:600;}
 .msg.user .msg-time{text-align:right;}
-
-.chat-suggestions{
-  display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px;
-}
-.sug-chip{
-  background:var(--card2);border:1px solid var(--border);
-  color:var(--softer);font-size:0.72rem;padding:4px 10px;
-  border-radius:100px;cursor:pointer;transition:all 0.15s;
-  font-family:'DM Sans',sans-serif;
-}
-.sug-chip:hover{border-color:var(--teal);color:var(--teal);}
-
-.chat-input-row{
-  padding:10px 12px;border-top:1px solid var(--border);
-  display:flex;gap:8px;align-items:center;
-}
-.chat-input{
-  flex:1;background:var(--card2);border:1px solid var(--border);
-  color:var(--text);padding:8px 12px;border-radius:8px;
-  font-family:'DM Sans',sans-serif;font-size:0.82rem;
-  outline:none;transition:border-color 0.15s;
-}
-.chat-input:focus{border-color:var(--teal);}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px;}
+.sug-chip{background:var(--lavender-light);border:1.5px solid var(--border);color:var(--lavender);font-size:0.72rem;padding:5px 11px;border-radius:100px;cursor:pointer;transition:all 0.15s;font-family:'Nunito',sans-serif;font-weight:700;}
+.sug-chip:hover{background:var(--lavender);color:#fff;border-color:var(--lavender);}
+.chat-input-row{padding:10px 12px;border-top:1.5px solid var(--border);display:flex;gap:8px;align-items:center;background:var(--bg2);}
+.chat-input{flex:1;background:var(--card);border:1.5px solid var(--border);color:var(--text);padding:9px 14px;border-radius:12px;font-family:'Quicksand',sans-serif;font-size:0.83rem;font-weight:600;outline:none;transition:all 0.18s;}
+.chat-input:focus{border-color:var(--lavender);box-shadow:0 0 0 3px rgba(155,135,245,0.12);}
 .chat-input::placeholder{color:var(--muted);}
-.chat-send{
-  width:32px;height:32px;background:var(--teal);border:none;border-radius:8px;
-  color:var(--navy);cursor:pointer;font-size:0.95rem;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.15s;flex-shrink:0;
-}
-.chat-send:hover{background:var(--teal-dim);}
-
-/* typing indicator */
+.chat-send{width:36px;height:36px;background:linear-gradient(135deg,var(--lavender),var(--lavender-dim));border:none;border-radius:12px;color:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all 0.18s;flex-shrink:0;}
+.chat-send:hover{transform:scale(1.05);box-shadow:0 3px 10px rgba(155,135,245,0.4);}
 .typing-indicator{display:flex;gap:4px;align-items:center;padding:9px 13px;}
-.typing-dot{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typingBounce 1.2s infinite;}
+.typing-dot{width:7px;height:7px;border-radius:50%;background:var(--lavender);animation:typingBounce 1.2s infinite;}
 .typing-dot:nth-child(2){animation-delay:0.2s;}
 .typing-dot:nth-child(3){animation-delay:0.4s;}
 @keyframes typingBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
 
 /* MISC */
-.divider{height:1px;background:var(--border);margin:4px 0;}
-.empty-state{text-align:center;padding:40px 20px;color:var(--muted);}
-.empty-state .es-icon{font-size:2.5rem;margin-bottom:10px;}
-.empty-state p{font-size:0.85rem;}
-.badge-new{
-  background:var(--gold-bg);color:var(--gold);
-  font-size:0.65rem;font-weight:600;padding:2px 7px;
-  border-radius:100px;margin-left:6px;letter-spacing:0.04em;
-}
 .tooltip-wrap{position:relative;}
-.tooltip{
-  display:none;position:absolute;bottom:calc(100%+6px);left:50%;transform:translateX(-50%);
-  background:#1A2840;border:1px solid var(--border);border-radius:7px;
-  padding:6px 10px;font-size:0.72rem;color:var(--text);white-space:nowrap;z-index:99;
-  box-shadow:0 4px 12px rgba(0,0,0,0.3);
-}
+.tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--text);border-radius:10px;padding:7px 12px;font-size:0.72rem;color:#fff;white-space:nowrap;z-index:99;box-shadow:var(--shadow-md);font-weight:600;}
 .tooltip-wrap:hover .tooltip{display:block;}
-
-/* scrollbar */
-.main::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:4px;}
-.main::-webkit-scrollbar-track,.sidebar::-webkit-scrollbar-track{background:transparent;}
+.main::-webkit-scrollbar,.sidebar::-webkit-scrollbar{width:5px;}
 .main::-webkit-scrollbar-thumb,.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:10px;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.page.active{animation:fadeIn 0.28s cubic-bezier(.4,0,.2,1) both;}
+.seg-panel.active{animation:fadeIn 0.22s cubic-bezier(.4,0,.2,1) both;}
 
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
-.page.active{animation:fadeIn 0.25s ease both;}
 </style>
 </head>
 <body>
@@ -530,53 +557,31 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-logo">Polo<span>Sync</span></div>
-  <div class="topbar-center">
-    <a href="index.html">← Back to Website</a>
-  </div>
+  <div class="topbar-center"><a href="index.html">← Back to Website</a></div>
   <div class="topbar-right">
     <div class="notif-btn tooltip-wrap" onclick="navigateTo('reminders')">
       🔔<div class="notif-dot"></div>
       <div class="tooltip">3 new notifications</div>
     </div>
-    <div class="avatar-chip">
-      <div class="av-img">JR</div>
-      <div class="av-name">Juan Reyes</div>
-    </div>
+    <div class="avatar-chip"><div class="av-img">JR</div><div class="av-name">Juan Reyes</div></div>
   </div>
 </div>
 
-<!-- LAYOUT -->
 <div class="app-layout">
-
   <!-- SIDEBAR -->
   <div class="sidebar">
     <div class="sidebar-section-label">Main</div>
-    <a class="nav-item active" id="nav-dashboard" onclick="navigateTo('dashboard')">
-      <span class="nav-icon">🏠</span> Dashboard
-    </a>
-    <a class="nav-item" id="nav-schedule" onclick="navigateTo('schedule')">
-      <span class="nav-icon">📅</span> Schedule
-    </a>
-    <a class="nav-item" id="nav-assignments" onclick="navigateTo('assignments')">
-      <span class="nav-icon">📋</span> Assignments
-      <span class="nav-badge">4</span>
-    </a>
-    <a class="nav-item" id="nav-reminders" onclick="navigateTo('reminders')">
-      <span class="nav-icon">🔔</span> Reminders
-      <span class="nav-badge gold">3</span>
-    </a>
-    <a class="nav-item" id="nav-ai" onclick="navigateTo('ai')">
-      <span class="nav-icon">✦</span> AI Insights
-      <span class="badge-new">NEW</span>
-    </a>
-
+    <a class="nav-item active" id="nav-dashboard" onclick="navigateTo('dashboard')"><span class="nav-icon">🏠</span> Dashboard</a>
+    <a class="nav-item" id="nav-schedule" onclick="navigateTo('schedule')"><span class="nav-icon">📅</span> Schedule</a>
+    <a class="nav-item" id="nav-assignments" onclick="navigateTo('assignments')"><span class="nav-icon">📋</span> Assignments<span class="nav-badge">4</span></a>
+    <a class="nav-item" id="nav-reminders" onclick="navigateTo('reminders')"><span class="nav-icon">🔔</span> Reminders<span class="nav-badge gold">3</span></a>
+    <a class="nav-item" id="nav-ai" onclick="navigateTo('ai')"><span class="nav-icon">✦</span> AI Insights<span class="badge-new">NEW</span></a>
     <div class="sidebar-section-label">Subjects</div>
-    <div class="nav-item"><span class="nav-icon" style="color:var(--teal)">●</span> MATH 101</div>
-    <div class="nav-item"><span class="nav-icon" style="color:var(--gold)">●</span> ENG 201</div>
-    <div class="nav-item"><span class="nav-icon" style="color:var(--coral)">●</span> PHYS 102</div>
-    <div class="nav-item"><span class="nav-icon" style="color:var(--violet)">●</span> CS 101</div>
-    <div class="nav-item"><span class="nav-icon" style="color:#3891FF">●</span> FIL 101</div>
-
+    <div class="nav-item" onclick="navigateTo('dashboard');switchDashTab('subjects')"><span class="nav-icon" style="color:var(--teal)">●</span> MATH 101</div>
+    <div class="nav-item" onclick="navigateTo('dashboard');switchDashTab('subjects')"><span class="nav-icon" style="color:var(--gold)">●</span> ENG 201</div>
+    <div class="nav-item" onclick="navigateTo('dashboard');switchDashTab('subjects')"><span class="nav-icon" style="color:var(--coral)">●</span> PHYS 102</div>
+    <div class="nav-item" onclick="navigateTo('dashboard');switchDashTab('subjects')"><span class="nav-icon" style="color:var(--violet)">●</span> CS 101</div>
+    <div class="nav-item" onclick="navigateTo('dashboard');switchDashTab('subjects')"><span class="nav-icon" style="color:var(--blue)">●</span> FIL 101</div>
     <div class="sidebar-progress">
       <div class="sp-label">Weekly Goal</div>
       <div class="sp-title">Study 20 hrs</div>
@@ -585,243 +590,227 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
     </div>
   </div>
 
-  <!-- MAIN -->
   <div class="main">
 
-    <!-- ────────────── DASHBOARD PAGE ────────────── -->
+    <!-- DASHBOARD -->
     <div class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div><div class="page-eyebrow">Dashboard</div><div class="page-title">Good evening, Juan 👋</div></div>
+        <button class="add-btn" onclick="navigateTo('assignments')">+ Add Task</button>
+      </div>
+      <div class="seg-tabs" id="dash-tabs">
+        <button class="seg-tab active" onclick="switchDashTab('overview')">📊 Overview</button>
+        <button class="seg-tab" onclick="switchDashTab('subjects')">📚 Subjects</button>
+        <button class="seg-tab" onclick="switchDashTab('today')">✅ Today's Tasks</button>
+      </div>
 
-      <div class="stats-row">
-        <div class="stat-mini teal">
-          <div class="stat-mini-label">Tasks Due This Week</div>
-          <div class="stat-mini-val">7</div>
-          <div class="stat-mini-sub">2 completed today</div>
+      <!-- Overview segment -->
+      <div class="seg-panel active" id="dash-overview">
+        <div class="stats-row">
+          <div class="stat-mini teal"><div class="stat-mini-label">Tasks Due This Week</div><div class="stat-mini-val">7</div><div class="stat-mini-sub">2 completed today</div></div>
+          <div class="stat-mini gold"><div class="stat-mini-label">Upcoming Exams</div><div class="stat-mini-val">3</div><div class="stat-mini-sub">Next: MATH 101 in 2 days</div></div>
+          <div class="stat-mini coral"><div class="stat-mini-label">Overdue Items</div><div class="stat-mini-val">1</div><div class="stat-mini-sub">FIL 101 Reaction Paper</div></div>
+          <div class="stat-mini violet"><div class="stat-mini-label">Study Streak</div><div class="stat-mini-val">6d</div><div class="stat-mini-sub">Personal best: 9 days</div></div>
         </div>
-        <div class="stat-mini gold">
-          <div class="stat-mini-label">Upcoming Exams</div>
-          <div class="stat-mini-val">3</div>
-          <div class="stat-mini-sub">Next: MATH 101 in 2 days</div>
-        </div>
-        <div class="stat-mini coral">
-          <div class="stat-mini-label">Overdue Items</div>
-          <div class="stat-mini-val">1</div>
-          <div class="stat-mini-sub">FIL 101 Reaction Paper</div>
-        </div>
-        <div class="stat-mini violet">
-          <div class="stat-mini-label">Study Streak</div>
-          <div class="stat-mini-val">6d</div>
-          <div class="stat-mini-sub">Personal best: 9 days</div>
+        <div class="dash-grid">
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card">
+              <div class="card-header"><div class="card-title">Today's Tasks — June 5, 2026</div><div class="card-action" onclick="switchDashTab('today')">View All →</div></div>
+              <div id="today-tasks-list"></div>
+            </div>
+            <div class="card" style="background:linear-gradient(135deg,rgba(0,212,170,0.07),rgba(139,124,246,0.05));border-color:rgba(0,212,170,0.2);">
+              <div class="card-header"><div class="card-title">✦ AI Study Tip</div><div class="card-action" onclick="navigateTo('ai')">More Insights →</div></div>
+              <p style="font-size:0.84rem;color:var(--softer);line-height:1.7;">Based on your past sessions, you focus best between <strong style="color:var(--teal)">7–9 PM</strong>. Your MATH 101 exam is in 2 days — I recommend a 90-min review session tonight covering <strong style="color:var(--text)">Chapters 4–6</strong>. 📚</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div class="card"><div class="card-header"><div class="card-title">June 2026</div></div><div class="mini-cal" id="mini-calendar"></div></div>
+            <div class="card"><div class="card-header"><div class="card-title">Upcoming Reminders</div><div class="card-action" onclick="navigateTo('reminders')">See All →</div></div><div id="dash-reminders"></div></div>
+          </div>
         </div>
       </div>
 
-      <div class="dash-grid">
-        <div style="display:flex;flex-direction:column;gap:18px;">
-
-          <!-- Today's Tasks -->
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Today's Tasks — June 5, 2026</div>
-              <div class="card-action" onclick="navigateTo('assignments')">View All →</div>
-            </div>
-            <div id="today-tasks-list">
-              <!-- injected by JS -->
-            </div>
-          </div>
-
-          <!-- AI Quick Tip -->
-          <div class="card" style="background:linear-gradient(135deg,rgba(0,212,170,0.07),rgba(139,124,246,0.05));border-color:rgba(0,212,170,0.2);">
-            <div class="card-header">
-              <div class="card-title">✦ AI Study Tip</div>
-              <div class="card-action" onclick="navigateTo('ai')">More Insights →</div>
-            </div>
-            <p style="font-size:0.84rem;color:var(--softer);line-height:1.7;">
-              Based on your past sessions, you focus best between <strong style="color:var(--teal)">7–9 PM</strong>. Your MATH 101 exam is in 2 days — I recommend a 90-minute review session tonight covering <strong style="color:var(--text)">Chapters 4–6</strong>. You've been avoiding this subject lately! 📚
-            </p>
+      <!-- Subjects segment -->
+      <div class="seg-panel" id="dash-subjects">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:0.78rem;color:var(--muted);">5 enrolled subjects · AY 2025–2026 · Semester 2</div>
+          <div class="filter-pills">
+            <button class="pill active" onclick="filterSubjects('all',this)">All</button>
+            <button class="pill" onclick="filterSubjects('on-track',this)">On Track</button>
+            <button class="pill" onclick="filterSubjects('needs-attention',this)">Needs Attention</button>
           </div>
         </div>
+        <div class="subjects-grid" id="subjects-grid"></div>
+      </div>
 
-        <!-- Right column: mini calendar + reminders -->
-        <div style="display:flex;flex-direction:column;gap:18px;">
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">June 2026</div>
-            </div>
-            <div class="mini-cal" id="mini-calendar"></div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <div class="card-title">Upcoming Reminders</div>
-              <div class="card-action" onclick="navigateTo('reminders')">See All →</div>
-            </div>
-            <div id="dash-reminders"></div>
-          </div>
+      <!-- Today tasks segment -->
+      <div class="seg-panel" id="dash-today">
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:0.82rem;color:var(--muted);">Showing tasks due today + overdue</div>
+          <button class="add-btn" onclick="navigateTo('assignments')">All Assignments →</button>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title">📅 June 5, 2026 — Thursday</div><div style="font-size:0.75rem;color:var(--muted);">3 of 5 remaining</div></div>
+          <div id="today-tasks-full"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><div class="card-title" style="color:var(--peach);">⚠ Overdue Items</div></div>
+          <div id="overdue-tasks-list"></div>
         </div>
       </div>
     </div>
 
-    <!-- ────────────── SCHEDULE PAGE ────────────── -->
+    <!-- SCHEDULE -->
     <div class="page" id="page-schedule">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:0.75rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Schedule</div>
-          <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;">Study Calendar</h2>
-        </div>
+      <div class="page-header">
+        <div><div class="page-eyebrow">Schedule</div><div class="page-title">Study Calendar</div></div>
         <div style="display:flex;align-items:center;gap:10px;">
-          <div class="view-toggle">
-            <button class="vt-btn active">Week</button>
-            <button class="vt-btn">Month</button>
-            <button class="vt-btn">Day</button>
-          </div>
+          <div class="view-toggle"><button class="vt-btn active">Week</button><button class="vt-btn">Month</button><button class="vt-btn">Day</button></div>
           <button class="add-btn">+ Add Session</button>
         </div>
       </div>
-
       <div class="card" style="padding:0;overflow:hidden;">
-        <div class="week-grid-wrapper">
-          <div class="week-grid" id="week-grid">
-            <!-- injected by JS -->
+        <div class="week-grid-wrapper"><div class="week-grid" id="week-grid"></div></div>
+      </div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;">
+        <span style="font-size:0.75rem;color:var(--muted);">Legend:</span>
+        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(0,212,170,0.3);"></span>Math/Science</span>
+        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(255,184,0,0.3);"></span>Humanities</span>
+        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(255,95,87,0.3);"></span>Lab</span>
+        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(139,124,246,0.3);"></span>Coding</span>
+      </div>
+    </div>
+
+    <!-- ASSIGNMENTS -->
+    <div class="page" id="page-assignments">
+      <div class="page-header">
+        <div><div class="page-eyebrow">Tracker</div><div class="page-title">Assignments &amp; Exams</div></div>
+        <button class="add-btn">+ Add Task</button>
+      </div>
+      <div class="seg-tabs" id="assign-tabs">
+        <button class="seg-tab active" onclick="switchAssignTab('list')">📋 Task List</button>
+        <button class="seg-tab" onclick="switchAssignTab('kanban')">🗂 Kanban Board</button>
+        <button class="seg-tab" onclick="switchAssignTab('exams')">📝 Exams</button>
+      </div>
+      <!-- Task List -->
+      <div class="seg-panel active" id="assign-list">
+        <div class="filter-pills" id="assign-filters">
+          <button class="pill active" data-filter="all" onclick="setAssignFilter(this)">All</button>
+          <button class="pill" data-filter="pending" onclick="setAssignFilter(this)">Pending</button>
+          <button class="pill" data-filter="exam" onclick="setAssignFilter(this)">Exams</button>
+          <button class="pill" data-filter="done" onclick="setAssignFilter(this)">Done</button>
+          <button class="pill" data-filter="overdue" onclick="setAssignFilter(this)">Overdue</button>
+        </div>
+        <div class="card" style="padding:0;overflow:auto;">
+          <table class="assign-table"><thead><tr>
+            <th style="width:30px;"></th><th>Task / Exam</th><th>Subject</th><th>Type</th>
+            <th>Due Date</th><th>Priority</th><th>Progress</th><th>Status</th><th></th>
+          </tr></thead><tbody id="assign-tbody"></tbody></table>
+        </div>
+      </div>
+      <!-- Kanban -->
+      <div class="seg-panel" id="assign-kanban">
+        <div class="kanban-board" id="kanban-board"></div>
+      </div>
+      <!-- Exams -->
+      <div class="seg-panel" id="assign-exams">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <div style="font-size:0.82rem;color:var(--muted);">Upcoming exams — sorted by date</div>
+          <div class="filter-pills" style="margin-left:auto;">
+            <button class="pill active">All</button>
+            <button class="pill">MATH</button>
+            <button class="pill">ENG</button>
+            <button class="pill">PHYS</button>
+          </div>
+        </div>
+        <div class="exams-grid" id="exams-grid"></div>
+      </div>
+    </div>
+
+    <!-- REMINDERS -->
+    <div class="page" id="page-reminders">
+      <div class="page-header">
+        <div><div class="page-eyebrow">Notifications</div><div class="page-title">Reminders &amp; Alerts</div></div>
+        <button class="add-btn" onclick="switchRemTab('add')">+ Add Reminder</button>
+      </div>
+      <div class="seg-tabs" id="rem-tabs">
+        <button class="seg-tab active" onclick="switchRemTab('today')">📅 Today</button>
+        <button class="seg-tab" onclick="switchRemTab('notifications')">🔔 Notifications</button>
+        <button class="seg-tab" onclick="switchRemTab('add')">➕ Add New</button>
+      </div>
+      <!-- Today -->
+      <div class="seg-panel active" id="rem-today">
+        <div class="rem-grid">
+          <div>
+            <div class="card-title" style="margin-bottom:14px;">📅 Today's Schedule Reminders</div>
+            <div class="today-reminders" id="today-reminders-list"></div>
+          </div>
+          <div>
+            <div class="card-title" style="margin-bottom:14px;">📋 Quick Summary</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="card" style="padding:16px;"><div style="display:flex;align-items:center;gap:12px;"><div style="font-size:1.6rem;">⏰</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:var(--mint);">5</div><div style="font-size:0.75rem;color:var(--muted);">Reminders today</div></div></div></div>
+              <div class="card" style="padding:16px;"><div style="display:flex;align-items:center;gap:12px;"><div style="font-size:1.6rem;">🔴</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:var(--peach);">1</div><div style="font-size:0.75rem;color:var(--muted);">Urgent (within 2 hrs)</div></div></div></div>
+              <div class="card" style="padding:16px;"><div style="display:flex;align-items:center;gap:12px;"><div style="font-size:1.6rem;">✅</div><div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;color:var(--softer);">2</div><div style="font-size:0.75rem;color:var(--muted);">Dismissed today</div></div></div></div>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Legend -->
-      <div style="display:flex;gap:16px;flex-wrap:wrap;">
-        <span style="font-size:0.75rem;color:var(--muted);">Legend:</span>
-        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(0,212,170,0.3);"></span>Math / Science</span>
-        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(255,184,0,0.3);"></span>Language / Humanities</span>
-        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(255,95,87,0.3);"></span>Lab / Output-heavy</span>
-        <span style="font-size:0.75rem;display:flex;align-items:center;gap:5px;"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:rgba(139,124,246,0.3);"></span>Coding / Tech</span>
-      </div>
-    </div>
-
-    <!-- ────────────── ASSIGNMENTS PAGE ────────────── -->
-    <div class="page" id="page-assignments">
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-        <div>
-          <div style="font-size:0.75rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Tracker</div>
-          <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;">Assignments & Exams</h2>
+      <!-- Notifications -->
+      <div class="seg-panel" id="rem-notifications">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <div class="filter-pills"><button class="pill active">All</button><button class="pill">Unread</button><button class="pill">Exams</button><button class="pill">AI Tips</button></div>
+          <button style="margin-left:auto;background:none;border:1px solid var(--border);color:var(--muted);padding:5px 14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.78rem;cursor:pointer;">Mark All Read</button>
         </div>
-        <button class="add-btn">+ Add Task</button>
+        <div class="notif-feed" id="notif-feed"></div>
       </div>
-
-      <div class="assign-toolbar">
-        <div class="filter-pills" id="assign-filters">
-          <button class="pill active" data-filter="all">All</button>
-          <button class="pill" data-filter="pending">Pending</button>
-          <button class="pill" data-filter="exam">Exams</button>
-          <button class="pill" data-filter="done">Done</button>
-          <button class="pill" data-filter="overdue">Overdue</button>
-        </div>
-      </div>
-
-      <div class="card" style="padding:0;overflow:auto;">
-        <table class="assign-table" id="assign-table">
-          <thead>
-            <tr>
-              <th style="width:30px;"></th>
-              <th>Task / Exam</th>
-              <th>Subject</th>
-              <th>Type</th>
-              <th>Due Date</th>
-              <th>Priority</th>
-              <th>Progress</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="assign-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- ────────────── REMINDERS PAGE ────────────── -->
-    <div class="page" id="page-reminders">
-      <div>
-        <div style="font-size:0.75rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;">Notifications</div>
-        <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;">Reminders & Alerts</h2>
-      </div>
-
-      <div class="rem-grid">
-        <div>
-          <div class="card-title" style="margin-bottom:14px;">📅 Today's Schedule Reminders</div>
-          <div class="today-reminders" id="today-reminders-list"></div>
-        </div>
-        <div>
-          <div class="card-title" style="margin-bottom:14px;">🔔 Notification Feed</div>
-          <div class="notif-feed" id="notif-feed"></div>
+      <!-- Add -->
+      <div class="seg-panel" id="rem-add">
+        <div class="add-reminder-form">
+          <div class="card-title" style="margin-bottom:4px;">➕ Add New Reminder</div>
+          <p style="font-size:0.8rem;color:var(--muted);">Set a custom reminder for any task, exam, or study session.</p>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Reminder Title</label><input class="form-input" placeholder="e.g. Study MATH Chapter 4" /></div>
+            <div class="form-group"><label class="form-label">Subject</label><select class="form-select"><option>MATH 101</option><option>ENG 201</option><option>PHYS 102</option><option>CS 101</option><option>FIL 101</option><option>General</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Date</label><input class="form-input" type="date" value="2026-06-05" /></div>
+            <div class="form-group"><label class="form-label">Time</label><input class="form-input" type="time" value="19:00" /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Type</label><select class="form-select"><option>Study Session</option><option>Assignment Deadline</option><option>Exam</option><option>Break / Rest</option><option>Other</option></select></div>
+            <div class="form-group"><label class="form-label">Priority</label><select class="form-select"><option>High</option><option>Medium</option><option>Low</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label">Notes (optional)</label><input class="form-input" placeholder="Add any extra details..." /></div>
+          <div style="display:flex;gap:10px;justify-content:flex-end;">
+            <button style="background:none;border:1px solid var(--border);color:var(--muted);padding:8px 18px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;cursor:pointer;" onclick="switchRemTab('today')">Cancel</button>
+            <button class="add-btn" onclick="switchRemTab('today')">Save Reminder</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ────────────── AI PAGE ────────────── -->
-    <div class="page ai-page" id="page-ai">
+    <!-- AI -->
+    <div class="page" id="page-ai">
       <div class="ai-banner">
         <div class="ai-banner-icon">✦</div>
-        <div>
-          <h2>AI-Powered Study Recommendations</h2>
-          <p>PoloSync analyzes your study patterns, assignment history, and performance to give you personalized advice — so you study smarter, not harder.</p>
-        </div>
+        <div><h2>AI-Powered Study Recommendations</h2><p>PoloSync analyzes your study patterns, assignment history, and performance to give you personalized advice.</p></div>
       </div>
-
       <div class="study-insights">
-        <div class="insight-card">
-          <h4>Best Focus Window</h4>
-          <div class="insight-big" style="color:var(--teal);">7–9 PM</div>
-          <div class="insight-sub">Based on 14 tracked sessions</div>
-        </div>
-        <div class="insight-card">
-          <h4>Avg. Session Length</h4>
-          <div class="insight-big" style="color:var(--gold);">68 min</div>
-          <div class="insight-sub">Optimal: 45–90 min blocks</div>
-        </div>
-        <div class="insight-card">
-          <h4>Most Productive Day</h4>
-          <div class="insight-big" style="color:var(--violet);">Tuesday</div>
-          <div class="insight-sub">Avg. 3.2 hrs of deep work</div>
-        </div>
+        <div class="insight-card"><h4>Best Focus Window</h4><div class="insight-big" style="color:var(--mint);">7–9 PM</div><div class="insight-sub">Based on 14 tracked sessions</div></div>
+        <div class="insight-card"><h4>Avg. Session Length</h4><div class="insight-big" style="color:var(--butter);">68 min</div><div class="insight-sub">Optimal: 45–90 min blocks</div></div>
+        <div class="insight-card"><h4>Most Productive Day</h4><div class="insight-big" style="color:var(--lavender);">Tuesday</div><div class="insight-sub">Avg. 3.2 hrs of deep work</div></div>
       </div>
-
       <div>
         <div class="card-title" style="margin-bottom:14px;">✦ Personalized Recommendations</div>
         <div class="ai-recs-grid">
-          <div class="ai-rec-card">
-            <div class="ai-rec-header">
-              <div class="ai-rec-ic">⚠️</div>
-              <div><div class="rec-type">URGENT</div><h4>MATH 101 Exam Prep</h4></div>
-            </div>
-            <p>Your exam is in 2 days but you haven't studied MATH 101 in 4 days. Based on your quiz scores, Chapters 4 and 6 need the most attention. I suggest a 90-min session tonight.</p>
-            <button class="rec-action">Schedule Session →</button>
-          </div>
-          <div class="ai-rec-card">
-            <div class="ai-rec-header">
-              <div class="ai-rec-ic">📝</div>
-              <div><div class="rec-type">SUGGESTION</div><h4>Break Up the ENG Essay</h4></div>
-            </div>
-            <p>Your ENG 201 essay is due tonight and you're at 20% progress. Based on your writing speed, split it into 3 focused 45-minute sessions before 9 PM to finish comfortably.</p>
-            <button class="rec-action">View Task →</button>
-          </div>
-          <div class="ai-rec-card">
-            <div class="ai-rec-header">
-              <div class="ai-rec-ic">🏆</div>
-              <div><div class="rec-type">HABIT</div><h4>You're on a 6-Day Streak!</h4></div>
-            </div>
-            <p>Keep it up! Your personal best is 9 days. Studying even 30 minutes tomorrow maintains your streak and reinforces the habit. Your focus score improves 18% on streak days.</p>
-            <button class="rec-action">Log Today →</button>
-          </div>
-          <div class="ai-rec-card">
-            <div class="ai-rec-header">
-              <div class="ai-rec-ic">😴</div>
-              <div><div class="rec-type">WELLNESS</div><h4>Schedule a Rest Day</h4></div>
-            </div>
-            <p>You've logged 13+ hours this week. Research shows a rest day on Sunday improves next-week performance by up to 22%. I'll keep Sunday light on your schedule.</p>
-            <button class="rec-action">Adjust Schedule →</button>
-          </div>
+          <div class="ai-rec-card"><div class="ai-rec-header"><div class="ai-rec-ic">⚠️</div><div><div class="rec-type">URGENT</div><h4>MATH 101 Exam Prep</h4></div></div><p>Exam in 2 days, haven't studied in 4 days. Chapters 4 and 6 need attention. 90-min session tonight recommended.</p><button class="rec-action">Schedule Session →</button></div>
+          <div class="ai-rec-card"><div class="ai-rec-header"><div class="ai-rec-ic">📝</div><div><div class="rec-type">SUGGESTION</div><h4>Break Up the ENG Essay</h4></div></div><p>ENG 201 essay is due tonight, only 20% done. Split into 3 focused 45-min sessions before 9 PM.</p><button class="rec-action">View Task →</button></div>
+          <div class="ai-rec-card"><div class="ai-rec-header"><div class="ai-rec-ic">🏆</div><div><div class="rec-type">HABIT</div><h4>6-Day Streak!</h4></div></div><p>Keep it up! Personal best is 9 days. Study 30 mins tomorrow to maintain. Focus score improves 18% on streak days.</p><button class="rec-action">Log Today →</button></div>
+          <div class="ai-rec-card"><div class="ai-rec-header"><div class="ai-rec-ic">😴</div><div><div class="rec-type">WELLNESS</div><h4>Schedule a Rest Day</h4></div></div><p>You've logged 13+ hrs this week. A rest day Sunday improves performance by 22%. I'll keep it light.</p><button class="rec-action">Adjust Schedule →</button></div>
         </div>
       </div>
-
       <div>
-        <div class="card-title" style="margin-bottom:14px;">📊 Your Study Activity — Last 4 Weeks</div>
+        <div class="card-title" style="margin-bottom:14px;">📊 Study Activity — Last 4 Weeks</div>
         <div class="card">
           <p style="font-size:0.75rem;color:var(--muted);margin-bottom:10px;">Each cell = one day. Darker = more hours studied.</p>
           <div class="heatmap-row" id="heatmap"></div>
@@ -838,23 +827,14 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
       </div>
     </div>
 
-  </div><!-- /main -->
-</div><!-- /layout -->
+  </div>
+</div>
 
-<!-- CHATBOT FAB -->
-<button id="chatbot-fab" onclick="toggleChat()">
-  ✦
-  <div class="fab-badge">1</div>
-</button>
-
-<!-- CHATBOT WINDOW -->
+<button id="chatbot-fab" onclick="toggleChat()">✦<div class="fab-badge">1</div></button>
 <div id="chatbot-window">
   <div class="chat-header">
     <div class="chat-av">✦</div>
-    <div class="chat-header-info">
-      <h4>Polo AI Assistant</h4>
-      <p>● Online · Powered by PoloSync AI</p>
-    </div>
+    <div class="chat-header-info"><h4>Polo AI Assistant</h4><p>● Online · Powered by PoloSync AI</p></div>
     <button class="chat-close" onclick="toggleChat()">✕</button>
   </div>
   <div class="chat-messages" id="chat-messages"></div>
@@ -866,388 +846,317 @@ body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;f
 </div>
 
 <script>
-// ══════════════════════════════
-// MOCK DATA
-// ══════════════════════════════
 
 const SUBJECTS = {
-  'MATH 101': { color: 'var(--teal)', bg: 'var(--teal-bg)', cls: 'sb-teal' },
-  'ENG 201':  { color: 'var(--gold)', bg: 'var(--gold-bg)', cls: 'sb-gold' },
-  'PHYS 102': { color: 'var(--coral)', bg: 'var(--coral-bg)', cls: 'sb-coral' },
-  'CS 101':   { color: 'var(--violet)', bg: 'var(--violet-bg)', cls: 'sb-violet' },
-  'FIL 101':  { color: '#3891FF', bg: 'rgba(56,145,255,0.1)', cls: 'sb-blue' },
+  'MATH 101': {color:'var(--mint)',bg:'var(--mint-light)',cls:'sb-teal',icon:'📐',cardCls:'sc-math',name:'MATH 101',full:'Integral Calculus',teacher:'Prof. Santos',schedule:'MWF 9–10 AM',progress:68,grade:'B+',studyHrs:4.2,tasks:3,exams:1,status:'on-track',next:'Midterm Exam · Jun 7'},
+  'ENG 201':  {color:'var(--butter-dim)',bg:'var(--butter-light)',cls:'sb-gold',icon:'📖',cardCls:'sc-eng',name:'ENG 201',full:'Technical Writing',teacher:'Prof. Reyes',schedule:'TuTh 8–9:30 AM',progress:35,grade:'A-',studyHrs:2.1,tasks:2,exams:2,status:'needs-attention',next:'Essay Draft Due · Tonight'},
+  'PHYS 102': {color:'var(--peach)',bg:'var(--peach-light)',cls:'sb-coral',icon:'⚗️',cardCls:'sc-phys',name:'PHYS 102',full:'Mechanics & Waves',teacher:'Prof. Lim',schedule:'WF 8–9 AM',progress:55,grade:'B',studyHrs:3.8,tasks:2,exams:1,status:'on-track',next:'Lab Report · Jun 6'},
+  'CS 101':   {color:'var(--lavender)',bg:'var(--lavender-light)',cls:'sb-violet',icon:'💻',cardCls:'sc-cs',name:'CS 101',full:'Intro to Programming',teacher:'Prof. Cruz',schedule:'TuTh 1–3 PM',progress:72,grade:'A',studyHrs:5.1,tasks:2,exams:0,status:'on-track',next:'Algorithm Set · Jun 7'},
+  'FIL 101':  {color:'var(--sky)',bg:'var(--sky-light)',cls:'sb-blue',icon:'🇵🇭',cardCls:'sc-fil',name:'FIL 101',full:'Panitikang Filipino',teacher:'Prof. Dela Cruz',schedule:'ThF 2–3 PM',progress:20,grade:'C+',studyHrs:1.0,tasks:2,exams:0,status:'needs-attention',next:'Oral Recitation · Jun 10'},
 };
 
 const tasks = [
-  { id:1, name:'Problem Set 3', subject:'MATH 101', type:'Assignment', due:'Jun 5', priority:'medium', progress:100, status:'done' },
-  { id:2, name:'Essay Draft — Digital Literacy', subject:'ENG 201', type:'Assignment', due:'Jun 5', priority:'high', progress:20, status:'pending' },
-  { id:3, name:'Lab Report — Newton\'s Laws', subject:'PHYS 102', type:'Assignment', due:'Jun 6', priority:'high', progress:50, status:'pending' },
-  { id:4, name:'Algorithm Practice Set', subject:'CS 101', type:'Assignment', due:'Jun 7', priority:'medium', progress:75, status:'pending' },
-  { id:5, name:'Midterm Exam', subject:'MATH 101', type:'Exam', due:'Jun 7', priority:'high', progress:30, status:'pending' },
-  { id:6, name:'Reading Response — Jose Rizal', subject:'FIL 101', type:'Assignment', due:'Jun 3', priority:'low', progress:0, status:'overdue' },
-  { id:7, name:'Quiz — Kinematics', subject:'PHYS 102', type:'Exam', due:'Jun 9', priority:'medium', progress:0, status:'pending' },
-  { id:8, name:'Web App Project', subject:'CS 101', type:'Project', due:'Jun 14', priority:'high', progress:40, status:'pending' },
-  { id:9, name:'Long Exam — Literary Theory', subject:'ENG 201', type:'Exam', due:'Jun 11', priority:'high', progress:10, status:'pending' },
-  { id:10, name:'Oral Recitation Prep', subject:'FIL 101', type:'Assignment', due:'Jun 10', priority:'medium', progress:60, status:'pending' },
+  {id:1,name:'Problem Set 3',subject:'MATH 101',type:'Assignment',due:'Jun 5',priority:'medium',progress:100,status:'done'},
+  {id:2,name:'Essay Draft — Digital Literacy',subject:'ENG 201',type:'Assignment',due:'Jun 5',priority:'high',progress:20,status:'pending'},
+  {id:3,name:"Lab Report — Newton's Laws",subject:'PHYS 102',type:'Assignment',due:'Jun 6',priority:'high',progress:50,status:'pending'},
+  {id:4,name:'Algorithm Practice Set',subject:'CS 101',type:'Assignment',due:'Jun 7',priority:'medium',progress:75,status:'pending'},
+  {id:5,name:'Midterm Exam',subject:'MATH 101',type:'Exam',due:'Jun 7',priority:'high',progress:30,status:'pending'},
+  {id:6,name:'Reading Response — Jose Rizal',subject:'FIL 101',type:'Assignment',due:'Jun 3',priority:'low',progress:0,status:'overdue'},
+  {id:7,name:'Quiz — Kinematics',subject:'PHYS 102',type:'Exam',due:'Jun 9',priority:'medium',progress:0,status:'pending'},
+  {id:8,name:'Web App Project',subject:'CS 101',type:'Project',due:'Jun 14',priority:'high',progress:40,status:'pending'},
+  {id:9,name:'Long Exam — Literary Theory',subject:'ENG 201',type:'Exam',due:'Jun 11',priority:'high',progress:10,status:'pending'},
+  {id:10,name:'Oral Recitation Prep',subject:'FIL 101',type:'Assignment',due:'Jun 10',priority:'medium',progress:60,status:'pending'},
 ];
 
 const scheduleBlocks = [
-  // [day 0-4 = Mon-Fri, startSlot (half-hours from 7AM), durationSlots, title, sub, cls]
-  [0, 2, 3, 'MATH 101', 'Lecture · Room 301', 'sb-teal'],
-  [0, 9, 2, 'FIL 101', 'Lecture · Room 114', 'sb-blue'],
-  [0, 14, 3, 'MATH 101 Study', 'Self-study · Library', 'sb-teal'],
-  [1, 0, 3, 'ENG 201', 'Lecture · Room 205', 'sb-gold'],
-  [1, 6, 4, 'CS 101', 'Lab · CL Building', 'sb-violet'],
-  [1, 12, 3, 'PHYS 102 Review', 'Self-study · Home', 'sb-coral'],
-  [2, 2, 3, 'MATH 101', 'Lecture · Room 301', 'sb-teal'],
-  [2, 8, 3, 'PHYS 102', 'Lecture · Room 401', 'sb-coral'],
-  [2, 13, 2, 'ENG 201 Draft', 'Essay writing · Home', 'sb-gold'],
-  [3, 0, 2, 'CS 101', 'Lecture · Room 210', 'sb-violet'],
-  [3, 4, 3, 'FIL 101', 'Discussion · Room 114', 'sb-blue'],
-  [3, 10, 4, 'CS 101 Project', 'Project work · Lab', 'sb-violet'],
-  [4, 2, 3, 'PHYS 102', 'Lab Session · Lab 2', 'sb-coral'],
-  [4, 8, 2, 'ENG 201', 'Workshop · Room 205', 'sb-gold'],
-  [4, 12, 3, 'Weekly Review', 'All subjects · Home', 'sb-teal'],
+  [0,2,3,'MATH 101','Lecture · Room 301','sb-teal'],
+  [0,9,2,'FIL 101','Lecture · Room 114','sb-blue'],
+  [0,14,3,'MATH 101 Study','Self-study · Library','sb-teal'],
+  [1,0,3,'ENG 201','Lecture · Room 205','sb-gold'],
+  [1,6,4,'CS 101','Lab · CL Building','sb-violet'],
+  [1,12,3,'PHYS 102 Review','Self-study · Home','sb-coral'],
+  [2,2,3,'MATH 101','Lecture · Room 301','sb-teal'],
+  [2,8,3,'PHYS 102','Lecture · Room 401','sb-coral'],
+  [2,13,2,'ENG 201 Draft','Essay writing · Home','sb-gold'],
+  [3,0,2,'CS 101','Lecture · Room 210','sb-violet'],
+  [3,4,3,'FIL 101','Discussion · Room 114','sb-blue'],
+  [3,10,4,'CS 101 Project','Project work · Lab','sb-violet'],
+  [4,2,3,'PHYS 102','Lab Session · Lab 2','sb-coral'],
+  [4,8,2,'ENG 201','Workshop · Room 205','sb-gold'],
+  [4,12,3,'Weekly Review','All subjects · Home','sb-teal'],
 ];
 
 const reminders = [
-  { time:'7:00', ampm:'AM', title:'Start MATH 101 Review', sub:'Exam in 2 days — Chapter 4–6', icon:'📚', color:'var(--teal)', bg:'var(--teal-bg)' },
-  { time:'10:00', ampm:'AM', title:'ENG 201 Essay Due Tonight', sub:'11:59 PM deadline — only 20% done', icon:'⚠️', color:'var(--coral)', bg:'var(--coral-bg)' },
-  { time:'2:00', ampm:'PM', title:'PHYS 102 Lab Report', sub:'Due tomorrow — 50% complete', icon:'🔬', color:'var(--gold)', bg:'var(--gold-bg)' },
-  { time:'7:00', ampm:'PM', title:'Peak Focus Window Begins', sub:'Best time to study based on your history', icon:'✦', color:'var(--teal)', bg:'var(--teal-bg)' },
-  { time:'9:30', ampm:'PM', title:'Wind Down Reminder', sub:'Set tomorrow\'s priorities before bed', icon:'🌙', color:'var(--violet)', bg:'var(--violet-bg)' },
+  {time:'7:00',ampm:'AM',title:'Start MATH 101 Review',sub:'Exam in 2 days — Chapter 4–6',icon:'📚',color:'var(--mint)',bg:'var(--mint-light)'},
+  {time:'10:00',ampm:'AM',title:'ENG 201 Essay Due Tonight',sub:'11:59 PM deadline — only 20% done',icon:'⚠️',color:'var(--peach)',bg:'var(--peach-light)'},
+  {time:'2:00',ampm:'PM',title:'PHYS 102 Lab Report',sub:'Due tomorrow — 50% complete',icon:'🔬',color:'var(--butter-dim)',bg:'var(--butter-light)'},
+  {time:'7:00',ampm:'PM',title:'Peak Focus Window Begins',sub:'Best time to study based on your history',icon:'✦',color:'var(--mint)',bg:'var(--mint-light)'},
+  {time:'9:30',ampm:'PM',title:'Wind Down Reminder',sub:"Set tomorrow's priorities before bed",icon:'🌙',color:'var(--lavender)',bg:'var(--lavender-light)'},
 ];
 
 const notifications = [
-  { icon:'⚠️', title:'Overdue: FIL 101 Reaction Paper', desc:'This was due June 3. Submit ASAP to minimize deductions.', ago:'2 days ago', unread:true },
-  { icon:'🔔', title:'MATH 101 Exam in 2 Days', desc:'You have a midterm on June 7. Schedule your review session now!', ago:'1 hr ago', unread:true },
-  { icon:'✦', title:'AI Tip: Essay deadline tonight', desc:'Based on your writing speed, you need 3–4 hrs to finish the ENG draft.', ago:'3 hrs ago', unread:true },
-  { icon:'✅', title:'MATH 101 Problem Set 3 — Submitted!', desc:'Great work! You completed this task on time.', ago:'Today, 8:12 AM', unread:false },
-  { icon:'📅', title:'New exam added: PHYS Quiz', desc:'Kinematics Quiz scheduled for June 9 by your sync.', ago:'Yesterday', unread:false },
-  { icon:'🏆', title:'6-Day Study Streak!', desc:'You\'ve studied every day this week. Keep it going!', ago:'Yesterday', unread:false },
+  {icon:'⚠️',title:'Overdue: FIL 101 Reaction Paper',desc:'This was due June 3. Submit ASAP to minimize deductions.',ago:'2 days ago',unread:true},
+  {icon:'🔔',title:'MATH 101 Exam in 2 Days',desc:'You have a midterm on June 7. Schedule your review session now!',ago:'1 hr ago',unread:true},
+  {icon:'✦',title:'AI Tip: Essay deadline tonight',desc:'Based on your writing speed, you need 3–4 hrs to finish the ENG draft.',ago:'3 hrs ago',unread:true},
+  {icon:'✅',title:'MATH 101 Problem Set 3 — Submitted!',desc:'Great work! You completed this task on time.',ago:'Today, 8:12 AM',unread:false},
+  {icon:'📅',title:'New exam added: PHYS Quiz',desc:'Kinematics Quiz scheduled for June 9 by your sync.',ago:'Yesterday',unread:false},
+  {icon:'🏆',title:'6-Day Study Streak!',desc:"You've studied every day this week. Keep it going!",ago:'Yesterday',unread:false},
 ];
 
-// ══════════════════════════════
-// NAVIGATION
-// ══════════════════════════════
-
-function navigateTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
-  const navEl = document.getElementById('nav-' + page);
-  if (navEl) navEl.classList.add('active');
+function navigateTo(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  const el=document.getElementById('nav-'+page);
+  if(el) el.classList.add('active');
 }
 
-// ══════════════════════════════
-// DASHBOARD
-// ══════════════════════════════
-
-function renderTodayTasks() {
-  const list = document.getElementById('today-tasks-list');
-  const todayTasks = tasks.filter(t => t.due === 'Jun 5' || t.status === 'overdue').slice(0, 5);
-  list.innerHTML = todayTasks.map(t => {
-    const sub = SUBJECTS[t.subject];
-    const tagCls = t.status === 'done' ? 't-done' : t.status === 'overdue' ? 't-urgent' : t.type === 'Exam' ? 't-exam' : 't-today';
-    const tagLabel = t.status === 'done' ? 'Done' : t.status === 'overdue' ? 'Overdue' : t.type === 'Exam' ? 'Exam' : 'Due Today';
-    return `<div class="task-item" onclick="navigateTo('assignments')">
-      <div class="task-cb ${t.status==='done'?'done':''}" onclick="event.stopPropagation();toggleTask(${t.id},this)">${t.status==='done'?'✓':''}</div>
-      <div class="task-body">
-        <div class="task-name ${t.status==='done'?'done':''}">${t.name}</div>
-        <div class="task-meta">${t.subject} · ${t.due}</div>
-      </div>
-      <span class="task-tag ${tagCls}">${tagLabel}</span>
-    </div>`;
-  }).join('');
+function switchDashTab(tab){
+  const tabs=['overview','subjects','today'];
+  document.querySelectorAll('#dash-tabs .seg-tab').forEach((btn,i)=>btn.classList.toggle('active',tabs[i]===tab));
+  document.querySelectorAll('#page-dashboard .seg-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('dash-'+tab).classList.add('active');
 }
 
-function toggleTask(id, el) {
-  const t = tasks.find(x => x.id === id);
-  if (!t) return;
-  t.status = t.status === 'done' ? 'pending' : 'done';
+function switchAssignTab(tab){
+  const tabs=['list','kanban','exams'];
+  document.querySelectorAll('#assign-tabs .seg-tab').forEach((btn,i)=>btn.classList.toggle('active',tabs[i]===tab));
+  document.querySelectorAll('#page-assignments .seg-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('assign-'+tab).classList.add('active');
+}
+
+function switchRemTab(tab){
+  const tabs=['today','notifications','add'];
+  document.querySelectorAll('#rem-tabs .seg-tab').forEach((btn,i)=>btn.classList.toggle('active',tabs[i]===tab));
+  document.querySelectorAll('#page-reminders .seg-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('rem-'+tab).classList.add('active');
+}
+
+function renderTodayTasks(){
+  const todayT=tasks.filter(t=>t.due==='Jun 5'||t.status==='overdue').slice(0,5);
+  const mkItem=(t,showProg)=>{
+    const s=SUBJECTS[t.subject];
+    const tagCls=t.status==='done'?'t-done':t.status==='overdue'?'t-urgent':t.type==='Exam'?'t-exam':'t-today';
+    const tagLbl=t.status==='done'?'Done':t.status==='overdue'?'Overdue':t.type==='Exam'?'Exam':'Due Today';
+    const prog=showProg?`<div style="display:flex;align-items:center;gap:10px;"><div class="progress-bar"><div class="progress-fill ${t.progress>=70?'':t.progress>=30?'warn':'danger'}" style="width:${t.progress}%;"></div></div><span style="font-size:0.7rem;color:var(--muted);">${t.progress}%</span><span class="task-tag ${tagCls}">${tagLbl}</span></div>`:`<span class="task-tag ${tagCls}">${tagLbl}</span>`;
+    return `<div class="task-item" onclick="navigateTo('assignments')"><div class="task-cb ${t.status==='done'?'done':''}" onclick="event.stopPropagation();toggleTask(${t.id},this)">${t.status==='done'?'✓':''}</div><div class="task-body"><div class="task-name ${t.status==='done'?'done':''}">${t.name}</div><div class="task-meta">${t.subject} · ${t.due}</div></div>${prog}</div>`;
+  };
+  document.getElementById('today-tasks-list').innerHTML=todayT.map(t=>mkItem(t,false)).join('');
+  const todayFull=tasks.filter(t=>t.due==='Jun 5');
+  document.getElementById('today-tasks-full').innerHTML=todayFull.map(t=>mkItem(t,true)).join('');
+  const overdue=tasks.filter(t=>t.status==='overdue');
+  document.getElementById('overdue-tasks-list').innerHTML=overdue.length?overdue.map(t=>`<div class="task-item"><div class="task-cb" onclick="toggleTask(${t.id},this)"></div><div class="task-body"><div class="task-name">${t.name}</div><div class="task-meta">${t.subject} · Was due Jun 3</div></div><span class="task-tag t-urgent">Overdue</span></div>`).join(''):`<p style="font-size:0.85rem;color:var(--muted);text-align:center;padding:16px 0;">🎉 No overdue items!</p>`;
+}
+
+function toggleTask(id,el){
+  const t=tasks.find(x=>x.id===id);
+  if(!t) return;
+  t.status=t.status==='done'?'pending':'done';
   renderTodayTasks();
   renderAssignTable(currentFilter);
+  renderKanban();
 }
 
-function renderMiniCalendar() {
-  const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-  const eventDays = [5, 6, 7, 9, 11, 14];
-  let html = `<div class="cal-nav">
-    <button class="cal-nav-btn">‹</button>
-    <span class="cal-month">June 2026</span>
-    <button class="cal-nav-btn">›</button>
-  </div>
-  <div class="cal-grid">
-    ${days.map(d => `<div class="cal-dow">${d}</div>`).join('')}`;
-  // June 1 2026 = Monday (day index 1)
-  for (let i = 0; i < 1; i++) html += `<div class="cal-day other-month"></div>`;
-  for (let d = 1; d <= 30; d++) {
-    const isToday = d === 5;
-    const hasEv = eventDays.includes(d) && !isToday;
-    html += `<div class="cal-day${isToday?' today':''}${hasEv?' has-event':''}">${d}</div>`;
+function renderMiniCalendar(){
+  const days=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  const evDays=[5,6,7,9,11,14];
+  let h=`<div class="cal-nav"><button class="cal-nav-btn">‹</button><span class="cal-month">June 2026</span><button class="cal-nav-btn">›</button></div><div class="cal-grid">${days.map(d=>`<div class="cal-dow">${d}</div>`).join('')}`;
+  h+=`<div class="cal-day other-month"></div>`;
+  for(let d=1;d<=30;d++){
+    const isT=d===5,hasE=evDays.includes(d)&&!isT;
+    h+=`<div class="cal-day${isT?' today':''}${hasE?' has-event':''}">${d}</div>`;
   }
-  html += `</div>`;
-  document.getElementById('mini-calendar').innerHTML = html;
+  h+=`</div>`;
+  document.getElementById('mini-calendar').innerHTML=h;
 }
 
-function renderDashReminders() {
-  const el = document.getElementById('dash-reminders');
-  el.innerHTML = reminders.slice(0, 3).map(r => `
-    <div class="reminder-item">
-      <div class="reminder-dot" style="background:${r.color};"></div>
-      <div class="reminder-body">
-        <div class="reminder-title">${r.title}</div>
-        <div class="reminder-time">${r.time} ${r.ampm} · ${r.sub}</div>
+function renderDashReminders(){
+  document.getElementById('dash-reminders').innerHTML=reminders.slice(0,3).map(r=>`<div class="reminder-item"><div class="reminder-dot" style="background:${r.color};"></div><div class="reminder-body"><div class="reminder-title">${r.title}</div><div class="reminder-time">${r.time} ${r.ampm} · ${r.sub}</div></div></div>`).join('');
+}
+
+function renderSubjects(filter){
+  const list=Object.values(SUBJECTS);
+  const filtered=filter==='all'?list:list.filter(s=>s.status===filter);
+  document.getElementById('subjects-grid').innerHTML=filtered.map(s=>`
+    <div class="subject-card ${s.cardCls}" onclick="navigateTo('assignments')">
+      <div class="subj-top">
+        <div class="subj-icon" style="background:${s.bg};">${s.icon}</div>
+        <span class="subj-badge" style="background:${s.bg};color:${s.color};">${s.status==='on-track'?'✓ On Track':'⚠ Attention'}</span>
       </div>
+      <div class="subj-name">${s.name}</div>
+      <div class="subj-desc">${s.full} · ${s.teacher}</div>
+      <div class="subj-stats">
+        <div class="subj-stat"><div class="subj-stat-val" style="color:${s.color};">${s.studyHrs}h</div><div class="subj-stat-lbl">Studied</div></div>
+        <div class="subj-stat"><div class="subj-stat-val" style="color:var(--softer);">${s.tasks}</div><div class="subj-stat-lbl">Tasks</div></div>
+        <div class="subj-stat"><div class="subj-stat-val" style="color:var(--softer);">${s.grade}</div><div class="subj-stat-lbl">Grade</div></div>
+      </div>
+      <div class="subj-progress-row">
+        <div class="subj-prog-bar"><div class="subj-prog-fill" style="width:${s.progress}%;background:${s.color};"></div></div>
+        <span class="subj-prog-pct" style="color:${s.color};">${s.progress}%</span>
+      </div>
+      <div class="subj-next">📍 <strong>Next:</strong> ${s.next}</div>
     </div>`).join('');
 }
 
-// ══════════════════════════════
-// SCHEDULE
-// ══════════════════════════════
-
-function renderWeekGrid() {
-  const days = ['MON', 'TUE', 'WED', 'THU', 'FRI'];
-  const dates = [2, 3, 4, 5, 6];
-  const todayIdx = 3; // Thursday = index 3
-  const startHour = 7;
-  const slots = 18; // 7AM to 4PM, each slot = 1 hr
-
-  let html = `<div class="wg-time-col" style="border-bottom:1px solid var(--border);padding:10px 8px;"></div>`;
-  days.forEach((d, i) => {
-    html += `<div class="wg-day-header${i===todayIdx?' today-col':''}">
-      <div class="day-num">${dates[i]}</div>
-      <div>${d}</div>
-    </div>`;
-  });
-
-  for (let s = 0; s < slots; s++) {
-    const h = startHour + s;
-    const label = h < 12 ? `${h} AM` : h === 12 ? '12 PM' : `${h-12} PM`;
-    html += `<div class="wg-time-label">${label}</div>`;
-    for (let d = 0; d < 5; d++) {
-      const blocks = scheduleBlocks.filter(b => b[0] === d);
-      let cellContent = '';
-      blocks.forEach(b => {
-        if (b[1] === s) {
-          const top = 0;
-          const height = b[2] * 40;
-          cellContent += `<div class="sched-block ${b[5]}" style="top:0;height:${height}px;">
-            <span class="sb-title">${b[3]}</span>
-            <span class="sb-sub">${b[4]}</span>
-          </div>`;
-        }
-      });
-      html += `<div class="wg-slot">${cellContent}</div>`;
-    }
-  }
-
-  document.getElementById('week-grid').innerHTML = html;
+function filterSubjects(filter,btn){
+  document.querySelectorAll('#dash-subjects .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSubjects(filter);
 }
 
-// ══════════════════════════════
-// ASSIGNMENTS
-// ══════════════════════════════
+function renderWeekGrid(){
+  const days=['MON','TUE','WED','THU','FRI'],dates=[2,3,4,5,6],todayIdx=3,startHour=7,slots=18;
+  let h=`<div class="wg-time-col" style="border-bottom:1px solid var(--border);padding:10px 8px;"></div>`;
+  days.forEach((d,i)=>h+=`<div class="wg-day-header${i===todayIdx?' today-col':''}"><div class="day-num">${dates[i]}</div><div>${d}</div></div>`);
+  for(let s=0;s<slots;s++){
+    const hr=startHour+s,lbl=hr<12?`${hr} AM`:hr===12?'12 PM':`${hr-12} PM`;
+    h+=`<div class="wg-time-label">${lbl}</div>`;
+    for(let d=0;d<5;d++){
+      let cell='';
+      scheduleBlocks.filter(b=>b[0]===d).forEach(b=>{if(b[1]===s)cell+=`<div class="sched-block ${b[5]}" style="top:0;height:${b[2]*40}px;"><span class="sb-title">${b[3]}</span><span class="sb-sub">${b[4]}</span></div>`;});
+      h+=`<div class="wg-slot">${cell}</div>`;
+    }
+  }
+  document.getElementById('week-grid').innerHTML=h;
+}
 
-let currentFilter = 'all';
+let currentFilter='all';
+function setAssignFilter(btn){
+  document.querySelectorAll('#assign-filters .pill').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAssignTable(btn.dataset.filter);
+}
 
-function renderAssignTable(filter) {
-  currentFilter = filter;
-  const tbody = document.getElementById('assign-tbody');
-  let filtered = tasks;
-  if (filter === 'pending') filtered = tasks.filter(t => t.status === 'pending');
-  if (filter === 'exam') filtered = tasks.filter(t => t.type === 'Exam');
-  if (filter === 'done') filtered = tasks.filter(t => t.status === 'done');
-  if (filter === 'overdue') filtered = tasks.filter(t => t.status === 'overdue');
-
-  tbody.innerHTML = filtered.map(t => {
-    const sub = SUBJECTS[t.subject];
-    const priColor = t.priority === 'high' ? 'var(--coral)' : t.priority === 'medium' ? 'var(--gold)' : 'var(--muted)';
-    const progCls = t.progress >= 70 ? '' : t.progress >= 30 ? 'warn' : 'danger';
-    const statusLabel = t.status === 'done' ? `<span style="color:var(--teal);font-size:0.78rem;">✓ Done</span>`
-      : t.status === 'overdue' ? `<span style="color:var(--coral);font-size:0.78rem;">⚠ Overdue</span>`
-      : `<span style="color:var(--softer);font-size:0.78rem;">Pending</span>`;
-    const typeEmoji = t.type === 'Exam' ? '📝' : t.type === 'Project' ? '🖥' : '📋';
-
+function renderAssignTable(filter){
+  currentFilter=filter;
+  let filtered=tasks;
+  if(filter==='pending') filtered=tasks.filter(t=>t.status==='pending');
+  if(filter==='exam') filtered=tasks.filter(t=>t.type==='Exam');
+  if(filter==='done') filtered=tasks.filter(t=>t.status==='done');
+  if(filter==='overdue') filtered=tasks.filter(t=>t.status==='overdue');
+  document.getElementById('assign-tbody').innerHTML=filtered.map(t=>{
+    const s=SUBJECTS[t.subject];
+    const priColor=t.priority==='high'?'var(--peach)':t.priority==='medium'?'var(--butter)':'var(--muted)';
+    const progCls=t.progress>=70?'':t.progress>=30?'warn':'danger';
+    const statusLbl=t.status==='done'?`<span style="color:var(--mint);font-size:0.78rem;">✓ Done</span>`:t.status==='overdue'?`<span style="color:var(--peach);font-size:0.78rem;">⚠ Overdue</span>`:`<span style="color:var(--softer);font-size:0.78rem;">Pending</span>`;
+    const typeEmoji=t.type==='Exam'?'📝':t.type==='Project'?'🖥':'📋';
     return `<tr class="${t.status==='done'?'done-row':''}">
       <td><div class="task-cb ${t.status==='done'?'done':''}" onclick="toggleTask(${t.id},this)">${t.status==='done'?'✓':''}</div></td>
-      <td style="font-weight:400;">${t.name}</td>
-      <td><span class="subject-chip" style="background:${sub.bg};color:${sub.color};">${t.subject}</span></td>
+      <td>${t.name}</td>
+      <td><span class="subject-chip" style="background:${s.bg};color:${s.color};">${t.subject}</span></td>
       <td><span style="font-size:0.78rem;color:var(--muted);">${typeEmoji} ${t.type}</span></td>
-      <td style="color:${t.status==='overdue'?'var(--coral)':'var(--softer)'};font-size:0.82rem;">${t.due}</td>
+      <td style="color:${t.status==='overdue'?'var(--peach)':'var(--softer)'};font-size:0.82rem;">${t.due}</td>
       <td><span class="priority-dot" style="background:${priColor};"></span></td>
-      <td>
-        <div style="display:flex;align-items:center;gap:6px;">
-          <div class="progress-bar"><div class="progress-fill ${progCls}" style="width:${t.progress}%;"></div></div>
-          <span style="font-size:0.72rem;color:var(--muted);">${t.progress}%</span>
-        </div>
-      </td>
-      <td>${statusLabel}</td>
+      <td><div style="display:flex;align-items:center;gap:6px;"><div class="progress-bar"><div class="progress-fill ${progCls}" style="width:${t.progress}%;"></div></div><span style="font-size:0.72rem;color:var(--muted);">${t.progress}%</span></div></td>
+      <td>${statusLbl}</td>
       <td><button class="act-btn">⋯</button></td>
     </tr>`;
   }).join('');
 }
 
-document.querySelectorAll('#assign-filters .pill').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('#assign-filters .pill').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    renderAssignTable(this.dataset.filter);
-  });
-});
-
-// ══════════════════════════════
-// REMINDERS
-// ══════════════════════════════
-
-function renderRemindersPage() {
-  const list = document.getElementById('today-reminders-list');
-  list.innerHTML = reminders.map(r => `
-    <div class="today-rem-item">
-      <div class="rem-time-block" style="color:${r.color};">
-        <div class="rtb-time">${r.time}</div>
-        <div class="rtb-ampm">${r.ampm}</div>
-      </div>
-      <div class="rem-divider"></div>
-      <div class="rem-content">
-        <h4>${r.title}</h4>
-        <p>${r.sub}</p>
-      </div>
-      <div class="rem-icon" style="background:${r.bg};">${r.icon}</div>
-    </div>`).join('');
-
-  const feed = document.getElementById('notif-feed');
-  feed.innerHTML = notifications.map(n => `
-    <div class="notif-item ${n.unread?'unread':''}">
-      <div class="notif-ic">${n.icon}</div>
-      <div class="notif-body">
-        <strong>${n.title}</strong>
-        <p>${n.desc}</p>
-      </div>
-      <div class="notif-ago">${n.ago}</div>
-    </div>`).join('');
+function renderKanban(){
+  const groups={
+    overdue:tasks.filter(t=>t.status==='overdue'),
+    pending:tasks.filter(t=>t.status==='pending'&&t.progress>0&&t.progress<75),
+    review:tasks.filter(t=>t.status==='pending'&&t.progress>=75),
+    done:tasks.filter(t=>t.status==='done'),
+  };
+  const cols=[{key:'overdue',label:'Overdue',color:'var(--peach)'},{key:'pending',label:'In Progress',color:'var(--butter)'},{key:'review',label:'Review',color:'var(--lavender)'},{key:'done',label:'Done',color:'var(--mint)'}];
+  document.getElementById('kanban-board').innerHTML=cols.map(col=>{
+    const items=groups[col.key];
+    const cards=items.map(t=>{
+      const s=SUBJECTS[t.subject];
+      const urgent=t.status==='overdue'||(t.due==='Jun 5'&&t.status!=='done');
+      return `<div class="kanban-card"><div class="kc-name">${t.name}</div><div class="kc-chips"><span class="kc-chip" style="background:${s.bg};color:${s.color};">${t.subject}</span><span class="kc-chip" style="background:rgba(255,255,255,0.05);color:var(--muted);">${t.type}</span></div><div class="progress-bar" style="width:100%;margin-bottom:6px;"><div class="progress-fill ${t.progress>=70?'':t.progress>=30?'warn':'danger'}" style="width:${t.progress}%;"></div></div><div class="kc-due ${urgent?'urgent':''}">📅 ${t.due} · ${t.progress}% done</div></div>`;
+    }).join('')||`<div style="font-size:0.78rem;color:var(--muted);text-align:center;padding:16px 0;">No items</div>`;
+    return `<div class="kanban-col"><div class="kanban-col-header"><span class="kanban-col-title" style="color:${col.color};">${col.label}</span><span class="kanban-count">${items.length}</span></div>${cards}</div>`;
+  }).join('');
 }
 
-// ══════════════════════════════
-// HEATMAP
-// ══════════════════════════════
-
-function renderHeatmap() {
-  const levels = [0,1,2,1,3,2,0, 1,2,3,4,2,1,0, 0,1,2,3,2,4,1, 2,3,2,1,4,3,2, 1,2];
-  const el = document.getElementById('heatmap');
-  el.innerHTML = levels.map(l => `<div class="hm-cell ${l>0?'hm-'+l:''}" title="${['0','1-2','2-3','3-4','4+'][l]} hrs"></div>`).join('');
+function renderExams(){
+  const exams=tasks.filter(t=>t.type==='Exam');
+  const daysMap={'Jun 5':0,'Jun 6':1,'Jun 7':2,'Jun 9':4,'Jun 10':5,'Jun 11':6,'Jun 14':9};
+  document.getElementById('exams-grid').innerHTML=exams.map(t=>{
+    const s=SUBJECTS[t.subject];
+    const d=daysMap[t.due]??'?';
+    return `<div class="exam-card ${t.priority}"><div class="exam-header"><span class="exam-subject" style="background:${s.bg};color:${s.color};">${t.subject}</span><div><div class="exam-countdown" style="color:${d<=2?'var(--peach)':d<=5?'var(--butter)':'var(--mint)'};">${d}d</div><div class="exam-countdown-label">remaining</div></div></div><div class="exam-name">${t.name}</div><div class="exam-date">📅 ${t.due} · Priority: ${t.priority}</div><div class="exam-prep-bar-track"><div class="exam-prep-bar-fill" style="width:${t.progress}%;background:${s.color};"></div></div><div class="exam-prep-label">Prep: ${t.progress}% · ${t.progress<30?'Not started':'In progress'}</div></div>`;
+  }).join('');
 }
 
-// ══════════════════════════════
-// CHATBOT
-// ══════════════════════════════
+function renderRemindersPage(){
+  document.getElementById('today-reminders-list').innerHTML=reminders.map(r=>`<div class="today-rem-item"><div class="rem-time-block" style="color:${r.color};"><div class="rtb-time">${r.time}</div><div class="rtb-ampm">${r.ampm}</div></div><div class="rem-divider"></div><div class="rem-content"><h4>${r.title}</h4><p>${r.sub}</p></div><div class="rem-icon" style="background:${r.bg};">${r.icon}</div></div>`).join('');
+  document.getElementById('notif-feed').innerHTML=notifications.map(n=>`<div class="notif-item ${n.unread?'unread':''}"><div class="notif-ic">${n.icon}</div><div class="notif-body"><strong>${n.title}</strong><p>${n.desc}</p></div><div class="notif-ago">${n.ago}</div></div>`).join('');
+}
 
-let chatOpen = false;
-const botResponses = {
-  default: [
-    "Based on your schedule, your next study session should be MATH 101 tonight from 7–9 PM. Your exam is in 2 days!",
-    "You have 4 pending tasks this week. The most urgent is your ENG 201 Essay Draft due tonight at 11:59 PM.",
-    "Your study streak is at 6 days! Study for at least 30 minutes tomorrow to keep it going.",
-    "I recommend focusing on MATH 101 and ENG 201 today. You've been spending less time on these subjects this week.",
-  ],
-  keywords: [
-    { keys: ['math','calculus','exam'], response: "📊 MATH 101 Midterm Exam is on June 7. Based on your quiz scores, I recommend reviewing Chapters 4 (Derivatives) and 6 (Integrals). You've studied this subject for 4.2 hrs total — aim for 6 hrs before the exam." },
-    { keys: ['essay','eng','english','writing'], response: "✍️ Your ENG 201 Essay Draft is due TONIGHT at 11:59 PM. You're at 20% progress. Based on your average writing speed, you'll need about 3–4 hours. Start with your thesis outline, then write 2 body paragraphs per session." },
-    { keys: ['schedule','time','free','today'], response: "📅 Today's schedule: You have a free block from 3–6 PM. I've pre-loaded a 90-min MATH study slot at 7 PM and blocked 8:30 PM for ENG essay writing. Check the Schedule page for details!" },
-    { keys: ['overdue','late','missed'], response: "⚠️ You have 1 overdue task: FIL 101 Reaction Paper (was due June 3). I recommend submitting it ASAP with a note to your professor. Late is better than never — it may still receive partial credit." },
-    { keys: ['streak','focus','habit'], response: "🏆 You're on a 6-day streak! Your focus score peaks on Tuesdays (3.2 hrs avg deep work). Studies show maintaining a streak increases retention by up to 40%. Don't break it now!" },
-    { keys: ['phys','physics','lab','newton'], response: "🔬 PHYS 102 Lab Report is due June 6. You're at 50% — good progress! Finish the Results and Conclusion sections tonight (est. 1.5 hrs). Your Quiz on Kinematics is June 9." },
-    { keys: ['remind','notification','alert'], response: "🔔 I've set reminders for: MATH study at 7 PM, ENG essay check-in at 8:30 PM, and a wind-down at 10 PM. Check the Reminders page to customize your notification times." },
-    { keys: ['cs','coding','project','algorithm'], response: "💻 CS 101 Web App Project is due June 14 (you're at 40%). Algorithm Practice Set is due June 7. I recommend 2-hr coding sessions on Thursday and Friday this week." },
+function renderHeatmap(){
+  const lvls=[0,1,2,1,3,2,0,1,2,3,4,2,1,0,0,1,2,3,2,4,1,2,3,2,1,4,3,2,1,2];
+  document.getElementById('heatmap').innerHTML=lvls.map(l=>`<div class="hm-cell ${l>0?'hm-'+l:''}" title="${['0','1-2','2-3','3-4','4+'][l]} hrs"></div>`).join('');
+}
+
+let chatOpen=false;
+const botResponses={
+  default:["Based on your schedule, MATH 101 tonight 7–9 PM. Exam in 2 days!","You have 4 pending tasks. Most urgent: ENG 201 Essay Draft due tonight.","Study streak at 6 days! 30 minutes tomorrow keeps it going."],
+  keywords:[
+    {keys:['math','exam'],response:"📊 MATH 101 Midterm on June 7. Review Chapters 4 & 6. Studied 4.2 hrs total — aim for 6 hrs."},
+    {keys:['essay','eng','english'],response:"✍️ ENG 201 Essay due TONIGHT 11:59 PM. 20% done. Split into 3 × 45-min sessions."},
+    {keys:['subject','subjects'],response:"📚 Enrolled in 5 subjects. CS 101 strongest (72%, Grade A). FIL 101 needs attention (20%)."},
+    {keys:['overdue','late'],response:"⚠️ 1 overdue: FIL 101 Reaction Paper (Jun 3). Submit ASAP — late is better than never."},
+    {keys:['streak','habit'],response:"🏆 6-day streak! Personal best: 9 days. 30 min tomorrow keeps it alive. Focus improves 18% on streak days."},
   ]
 };
+let botIdx=0;
 
-let botResponseIndex = 0;
-
-const suggestions = [
-  "What should I study today?",
-  "When is my next exam?",
-  "Show overdue tasks",
-  "How's my study streak?",
-];
-
-function initChat() {
-  const msgs = document.getElementById('chat-messages');
-  msgs.innerHTML = `
-    <div class="msg bot">
-      <div class="msg-bubble">👋 Hi Juan! I'm Polo, your AI study assistant.<br><br>I've analyzed your schedule and found <strong>1 urgent item</strong>: your ENG 201 essay is due <strong>tonight</strong> and you're only 20% done. Want a study plan?</div>
-      <div class="msg-time">Just now</div>
-    </div>`;
-  renderSuggestions();
+function initChat(){
+  document.getElementById('chat-messages').innerHTML=`<div class="msg bot"><div class="msg-bubble">👋 Hi Juan! I'm Polo, your AI study assistant.<br><br>I found <strong>1 urgent item</strong>: ENG 201 essay due <strong>tonight</strong> — only 20% done. Want a study plan?</div><div class="msg-time">Just now</div></div>`;
+  document.getElementById('chat-suggestions').innerHTML=["What should I study today?","When is my next exam?","Show my subjects","How's my streak?"].map(s=>`<span class="sug-chip" onclick="sendChatMsg('${s}')">${s}</span>`).join('');
 }
 
-function renderSuggestions() {
-  const el = document.getElementById('chat-suggestions');
-  el.innerHTML = suggestions.map(s => `<span class="sug-chip" onclick="sendChatMsg('${s}')">${s}</span>`).join('');
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('chatbot-window').classList.toggle('open',chatOpen);
+  const badge=document.querySelector('.fab-badge');
+  if(chatOpen&&badge) badge.style.display='none';
+  if(chatOpen){const m=document.getElementById('chat-messages');m.scrollTop=m.scrollHeight;}
 }
 
-function toggleChat() {
-  chatOpen = !chatOpen;
-  const win = document.getElementById('chatbot-window');
-  win.classList.toggle('open', chatOpen);
-  const badge = document.querySelector('.fab-badge');
-  if (chatOpen && badge) badge.style.display = 'none';
-  if (chatOpen) {
-    const msgs = document.getElementById('chat-messages');
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-}
-
-function sendChat() {
-  const input = document.getElementById('chat-input');
-  const val = input.value.trim();
-  if (!val) return;
+function sendChat(){
+  const inp=document.getElementById('chat-input'),val=inp.value.trim();
+  if(!val) return;
   sendChatMsg(val);
-  input.value = '';
+  inp.value='';
 }
 
-function sendChatMsg(text) {
-  const msgs = document.getElementById('chat-messages');
-  const now = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-
-  // User bubble
-  msgs.innerHTML += `<div class="msg user"><div class="msg-bubble">${text}</div><div class="msg-time">${now}</div></div>`;
-  msgs.scrollTop = msgs.scrollHeight;
-
-  // Typing indicator
-  const typingId = 'typing-' + Date.now();
-  msgs.innerHTML += `<div class="msg bot" id="${typingId}"><div class="msg-bubble" style="padding:0;"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
-  msgs.scrollTop = msgs.scrollHeight;
-
-  // Bot response after delay
-  setTimeout(() => {
-    document.getElementById(typingId)?.remove();
-    let response = null;
-    const lower = text.toLowerCase();
-    for (const r of botResponses.keywords) {
-      if (r.keys.some(k => lower.includes(k))) { response = r.response; break; }
-    }
-    if (!response) {
-      response = botResponses.default[botResponseIndex % botResponses.default.length];
-      botResponseIndex++;
-    }
-    msgs.innerHTML += `<div class="msg bot"><div class="msg-bubble">${response}</div><div class="msg-time">${now}</div></div>`;
-    msgs.scrollTop = msgs.scrollHeight;
-  }, 1200 + Math.random() * 600);
+function sendChatMsg(text){
+  const msgs=document.getElementById('chat-messages');
+  const now=new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  msgs.innerHTML+=`<div class="msg user"><div class="msg-bubble">${text}</div><div class="msg-time">${now}</div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  const tid='t'+Date.now();
+  msgs.innerHTML+=`<div class="msg bot" id="${tid}"><div class="msg-bubble" style="padding:0;"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div></div>`;
+  msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    document.getElementById(tid)?.remove();
+    let resp=null;
+    const lower=text.toLowerCase();
+    for(const r of botResponses.keywords){if(r.keys.some(k=>lower.includes(k))){resp=r.response;break;}}
+    if(!resp){resp=botResponses.default[botIdx%botResponses.default.length];botIdx++;}
+    msgs.innerHTML+=`<div class="msg bot"><div class="msg-bubble">${resp}</div><div class="msg-time">${now}</div></div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+  },1200+Math.random()*600);
 }
-
-// ══════════════════════════════
-// INIT
-// ══════════════════════════════
 
 renderTodayTasks();
 renderMiniCalendar();
 renderDashReminders();
+renderSubjects('all');
 renderWeekGrid();
 renderAssignTable('all');
+renderKanban();
+renderExams();
 renderRemindersPage();
 renderHeatmap();
 initChat();
+
 </script>
 </body>
 </html>
